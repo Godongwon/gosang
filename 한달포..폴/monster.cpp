@@ -370,9 +370,7 @@ void monster::render()
 	{
 		vi_monsterChild->monsterChildImg->aniRender(getMemDC(), vi_monsterChild->monsterChildRC.left, vi_monsterChild->monsterChildRC.top, vi_monsterChild->monsterChildAni);
 		//Rectangle(getMemDC(), vi_monsterChild->atkRC.left, vi_monsterChild->atkRC.top, vi_monsterChild->atkRC.right, vi_monsterChild->atkRC.bottom);
-		char str[128];
-		sprintf_s(str, "몬스터 %d 번쨰 채력 : %d", vi_monsterChild->monsterChildNum, vi_monsterChild->Hp);
-		TextOut(CAMERAMANAGER->getCameraDC(), 0, 60* vi_monsterChild->monsterChildNum, str, strlen(str));
+	
 	}
 
 }
@@ -383,4 +381,14 @@ void monster::set_monsterChildXY(int vectorNum, int monsterX, int monsterY)
 	vi_monsterChild->x = monsterX;
 	vi_monsterChild->y = monsterY;
 	vi_monsterChild->monsterChildRC = RectMakeCenter(vi_monsterChild->x, vi_monsterChild->y, 400,299);
+}
+
+void monster::HP_render()
+{
+	for (vi_monsterChild = v_monsterChild.begin(); vi_monsterChild != v_monsterChild.end(); ++vi_monsterChild)
+	{
+		char str[128];
+		sprintf_s(str, "%d번몬스터 채력 : %d HP", vi_monsterChild->monsterChildNum, vi_monsterChild->Hp);
+		FontTextOut(CAMERAMANAGER->getCameraDC(), 15,75+ (30 * vi_monsterChild->monsterChildNum), str, 15, "HY견고딕", RGB(254, 254, 254));
+	}
 }

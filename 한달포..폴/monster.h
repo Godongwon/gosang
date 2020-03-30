@@ -80,5 +80,6 @@ public:
 		vi_monsterChild = v_monsterChild.begin() + vectorNum;
 		vi_monsterChild->Hp -= ATK;
 	}
+	void HP_render();
 };
 

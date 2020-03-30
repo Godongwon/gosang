@@ -65,5 +65,6 @@ public:
 		vi_battlePlayerWarrior = v_battlePlayerWarrior.begin() + num;
 		return vi_battlePlayerWarrior->inGamewarriorImg->getMaxFrameX();
 	}
+	void warScene_render();
 };
 

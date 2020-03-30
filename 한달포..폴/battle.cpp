@@ -419,9 +419,9 @@ void battle::render()
 	{
 		vi_battlePlayerWarrior->inGamewarriorImg->aniRender(getMemDC(), vi_battlePlayerWarrior->inGamewarroirRC.left, vi_battlePlayerWarrior->inGamewarroirRC.top, vi_battlePlayerWarrior->inGamewarriorAni);
 		//Rectangle(getMemDC(), vi_battlePlayerWarrior->AtkRC.left, vi_battlePlayerWarrior->AtkRC.top, vi_battlePlayerWarrior->AtkRC.right, vi_battlePlayerWarrior->AtkRC.bottom);
-		char str[128];
-		sprintf_s(str, "|%d", vi_battlePlayerWarrior->HP);
-		TextOut(CAMERAMANAGER->getCameraDC(), WINSIZEX -50, 0, str, strlen(str));
+		//char str[128];
+		//sprintf_s(str, "|%d", vi_battlePlayerWarrior->HP);
+		//TextOut(CAMERAMANAGER->getCameraDC(), WINSIZEX -50, 0, str, strlen(str));
 	}
 	char str[128];
 	sprintf_s(str, "%d|%d", _atkMouseX, _atkMouseY);
@@ -438,6 +438,18 @@ void battle::Minus_warriorHP(int num, int monsterAtk)
 {
 	vi_battlePlayerWarrior = v_battlePlayerWarrior.begin() + num;
 	vi_battlePlayerWarrior->HP -= monsterAtk;
+}
+
+void battle::warScene_render()
+{
+	char str[128];
+	sprintf_s(str, "고용한 용병 수 : %d명",PLAYER->get_vPlayerWarrior().size());
+	FontTextOut(CAMERAMANAGER->getCameraDC(), 35, 345 , str, 15, "HY견고딕", RGB(254, 254, 254));
+
+	FontTextOut(CAMERAMANAGER->getCameraDC(), 29, 425, "전투에 살아있는 용병 수", 15, "HY견고딕", RGB(254, 254, 254));
+	char str1[128];
+	sprintf_s(str1, "%d명", v_battlePlayerWarrior.size());
+	FontTextOut(CAMERAMANAGER->getCameraDC(), 90, 445, str1, 15, "HY견고딕", RGB(254, 254, 254));
 }
 
 void battle::warrior_die()

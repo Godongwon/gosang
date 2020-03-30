@@ -46,6 +46,8 @@ HRESULT WarScene::init()
 	_warSceneWindowImg = IMAGEMANAGER->findImage("WarSceneWindow");
 	_buttonImg = IMAGEMANAGER->findImage("WarSceneButton");
 
+	IMAGEMANAGER->addImage("Interface", "resource/image/warScene/interface.bmp", 360*1.5, 384 * 1.5);
+
 
 	return S_OK;
 }
@@ -53,6 +55,7 @@ HRESULT WarScene::init()
 void WarScene::release()
 {
 
+	IMAGEMANAGER->deleteImage("Interface");
 	_monsterChild->release();
 	SAFE_DELETE(_monsterChild);
 }
@@ -105,6 +108,9 @@ void WarScene::update()
 void WarScene::render()
 {
 	Draw();
+	IMAGEMANAGER->findImage("Interface")->render(CAMERAMANAGER->getCameraDC(), 0, 0);
+	_monsterChild->HP_render();
+	_battle->warScene_render();
 	_monsterChild->render();
 	PLAYER->render();
 	_battle->render();
