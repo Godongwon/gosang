@@ -97,6 +97,9 @@
     <Filter Include="Object\전투">
       <UniqueIdentifier>{af324d4f-c3b5-4547-b257-b2bfd2ea03bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\플레이어\용병인벤토리">
+      <UniqueIdentifier>{d3394ce8-e228-4dad-b7fc-cfb22d51b145}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -110,9 +113,6 @@
     </ClInclude>
     <ClInclude Include="commonMacroFunction.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="mainGame.h">
-      <Filter>mainGame</Filter>
     </ClInclude>
     <ClInclude Include="manager\effectManager.h">
       <Filter>Manager</Filter>
@@ -225,14 +225,20 @@
     <ClInclude Include="itemHead.h">
       <Filter>Object\상점\아이템상점</Filter>
     </ClInclude>
-    <ClInclude Include="iven.h">
-      <Filter>Object\플레이어\인벤토리</Filter>
-    </ClInclude>
     <ClInclude Include="battle.h">
       <Filter>Object\전투</Filter>
     </ClInclude>
     <ClInclude Include="startScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="inven.h">
+      <Filter>Object\플레이어\인벤토리</Filter>
+    </ClInclude>
+    <ClInclude Include="WarriorInven.h">
+      <Filter>Object\플레이어\용병인벤토리</Filter>
+    </ClInclude>
+    <ClInclude Include="mainGame.h">
+      <Filter>mainGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,14 +338,17 @@
     <ClCompile Include="warriorControl.cpp">
       <Filter>Object\용병</Filter>
     </ClCompile>
-    <ClCompile Include="iven.cpp">
-      <Filter>Object\플레이어\인벤토리</Filter>
-    </ClCompile>
     <ClCompile Include="battle.cpp">
       <Filter>Object\전투</Filter>
     </ClCompile>
     <ClCompile Include="startScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="inven.cpp">
+      <Filter>Object\플레이어\인벤토리</Filter>
+    </ClCompile>
+    <ClCompile Include="WarriorInven.cpp">
+      <Filter>Object\플레이어\용병인벤토리</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "store.h"
-#include "Player.h"
+#include "inven.h"
 
 void store::add_itemImg()
 {
@@ -24,19 +24,20 @@ void store::release_itemImg()
 	IMAGEMANAGER->deleteImage("장군검");
 	IMAGEMANAGER->deleteImage("용검");
 }
-void store::add_vItem(string name, STORE_KIND kind, int effect,int itemnum)
+void store::add_vItem(string name, STORE_KIND kind, int effect,int itemnum,int price)
 {
 	STORE_ITEM item;
 	ZeroMemory(&item, sizeof(STORE_ITEM));
-	item.name = name;
+	//item.name = name;
 	item.Img = IMAGEMANAGER->findImage(name);
 	item.rc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 64,32);
 	item.kind = kind;
 	item.effect = effect;
 	item.itemnum = itemnum;
 	item.itemDisplayImg=IMAGEMANAGER->findImage("아이템창");
-	item.itemDisplayRC = RectMakeCenter(storeInfo.InstoreRC.right - (storeInfo.InstoreRC.right - storeInfo.InstoreRC.left) / 2,	(storeInfo.InstoreRC.top + 50),118, 36);
-
+	item.itemDisplayRC = RectMakeCenter(storeInfo.InstoreRC.right - (storeInfo.InstoreRC.right - storeInfo.InstoreRC.left) / 2,	(storeInfo.InstoreRC.top + 50), item.itemDisplayImg->getFrameWidth(), item.itemDisplayImg->getFrameHeight());
+	item.isSelect = false;
+	item.price = price;
 	v_item.push_back(item);
 }
 void store::add_Buttoninit()
@@ -44,9 +45,9 @@ void store::add_Buttoninit()
 	/*
 		0 : 무기버튼
 		1 : 갑옷버튼
-		3 : 포션버튼
-		4 : 구매버튼
-		5 : 나가기버튼
+		2 : 포션버튼
+		3 : 구매버튼
+		4 : 나가기버튼
 	*/
 	//무기버튼
 	_storeButton[0].storeButtonImg = IMAGEMANAGER->findImage("무기버튼");
@@ -85,7 +86,7 @@ void store::Button_PushRender(VI_ITEM item)
 	{
 		if(item->kind== STOREKIND_WEAPON)
 		{
-			vi_item->itemDisplayImg->render(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top);
+			vi_item->itemDisplayImg->frameRender(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top, vi_item->itemDisplayImg->getFrameX(),0);
 			vi_item->Img->render(getMemDC(), vi_item->rc.left, vi_item->rc.top);
 		}
 	}
@@ -94,7 +95,7 @@ void store::Button_PushRender(VI_ITEM item)
 	{
 		if (item->kind == STOREKIND_ARMER)
 		{
-			vi_item->itemDisplayImg->render(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top);
+			vi_item->itemDisplayImg->frameRender(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top, vi_item->itemDisplayImg->getFrameX(), 0);
 			vi_item->Img->render(getMemDC(), vi_item->rc.left, vi_item->rc.top);
 		}
 	}
@@ -102,10 +103,29 @@ void store::Button_PushRender(VI_ITEM item)
 	{
 		if (item->kind == STOREKIND_POTION)
 		{
-			vi_item->itemDisplayImg->render(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top);
+			vi_item->itemDisplayImg->frameRender(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top, vi_item->itemDisplayImg->getFrameX(), 0);
 			vi_item->Img->render(getMemDC(), vi_item->rc.left, vi_item->rc.top);
 		}
 	}
+}
+void store::Not_select(bool is)
+{
+	if (is)
+	{
+		NotSelectCount++;
+	}
+	if (is&&NotSelectCount < 180&& NotSelectCount!=0)
+	{
+		FontTextOut(getMemDC(), PLAYER->Player_getFocusX(), PLAYER->Player_getFocusY(), "선택한 아이템이 없습니다!!", 20, "HY견고딕", RGB(254, 254, 254));
+	}
+	if(NotSelectCount>181 && NotSelectCount != 0)
+	{
+		is = false;
+		_storeButton[3].isPush = false;
+
+		NotSelectCount = 0;
+	}
+	
 }
 //===============================================================================================================================================
 store::store(){}
@@ -116,9 +136,12 @@ HRESULT store::init()
 {
 
 	isOpenStore = false;
+	isNotSelect = false;
+	NotSelectCount = 0;
 	IMAGEMANAGER->addFrameImage("Store", "resource/image/상점/상점.bmp", 288 * 2.5, 82 * 2.5, 2, 1);
 	IMAGEMANAGER->addImage("InStore", "resource/image/상점/인스토어창.bmp", 714, 473);
-	IMAGEMANAGER->addImage("아이템창","resource/image/상점/아이템창2.bmp", 118*1.5, 36*1.5);
+	//IMAGEMANAGER->addImage("아이템창","resource/image/상점/아이템창2.bmp", 118*1.5, 36*1.5);
+	IMAGEMANAGER->addFrameImage("아이템창","resource/image/상점/아이템창3.bmp", 236*1.5, 36*1.5,2,1);
 
 	IMAGEMANAGER->addFrameImage("무기버튼", "resource/image/상점/버튼/무기버튼.bmp", 466, 31, 2, 1);
 	IMAGEMANAGER->addFrameImage("갑옷버튼", "resource/image/상점/버튼/갑옷버튼.bmp", 472, 31, 2, 1);
@@ -132,17 +155,17 @@ HRESULT store::init()
 	storeInfo.storeRC = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, storeInfo.storeImg->getFrameWidth(), storeInfo.storeImg->getFrameHeight());
 	storeInfo.InstoreImg = IMAGEMANAGER->findImage("InStore");
 	
-	add_vItem("도끼", STOREKIND_WEAPON, 10,1);
-	add_vItem("낫", STOREKIND_WEAPON, 15,2);
-	add_vItem("글라디우스", STOREKIND_WEAPON, 20,3);
-	add_vItem("장군검", STOREKIND_WEAPON, 25,4);
-	add_vItem("용검", STOREKIND_WEAPON, 30,5);
+	add_vItem("도끼", STOREKIND_WEAPON, 10,1,2000);
+	add_vItem("낫", STOREKIND_WEAPON, 15,2,1000);
+	add_vItem("글라디우스", STOREKIND_WEAPON, 20,3,3000);
+	add_vItem("장군검", STOREKIND_WEAPON, 25,4,4000);
+	add_vItem("용검", STOREKIND_WEAPON, 30,5,5000);
 	
-	add_vItem("우주복",STOREKIND_ARMER, 10,6);
-	add_vItem("정장",STOREKIND_ARMER, 15,7);
-	add_vItem("장군옷", STOREKIND_ARMER, 20,8);
-	add_vItem("한복", STOREKIND_ARMER, 25,9);
-	add_vItem("일본갑옷", STOREKIND_ARMER, 30,10);
+	add_vItem("우주복",STOREKIND_ARMER, 10,6,3000);
+	add_vItem("정장",STOREKIND_ARMER, 15,7,1000);
+	add_vItem("장군옷", STOREKIND_ARMER, 20,8,5000);
+	add_vItem("한복", STOREKIND_ARMER, 25,9,2000);
+	add_vItem("일본갑옷", STOREKIND_ARMER, 30,10,4000);
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -193,22 +216,31 @@ void store::update()
 					_storeButton[i].isPush = !_storeButton[i].isPush;
 				}
 			}
+			for (vi_item = v_item.begin(); vi_item != v_item.end(); ++vi_item)
+			{
+				if (PtInRect(&vi_item->itemDisplayRC, m_ptMouse))
+				{
+					vi_item->isSelect = !vi_item->isSelect;
+				}
+			}
+
 		}
 		for (vi_item = v_item.begin(); vi_item != v_item.end(); ++vi_item)
 		{
 		
 				if (vi_item->kind == STOREKIND_WEAPON)
 				{
-					vi_item->itemDisplayRC = RectMakeCenter(storeInfo.InstoreRC.right - (storeInfo.InstoreRC.right - storeInfo.InstoreRC.left) / 2, storeInfo.InstoreRC.top + 80 + (vi_item->itemnum *(vi_item->itemDisplayImg->getHeight() + 2)), vi_item->itemDisplayImg->getWidth(), vi_item->itemDisplayImg->getHeight());
+					vi_item->itemDisplayRC = RectMakeCenter(storeInfo.InstoreRC.right - (storeInfo.InstoreRC.right - storeInfo.InstoreRC.left) / 2+ vi_item->itemDisplayImg->getFrameWidth()/2, storeInfo.InstoreRC.top + 80 + (vi_item->itemnum *(vi_item->itemDisplayImg->getHeight() + 2)), vi_item->itemDisplayImg->getFrameWidth(), vi_item->itemDisplayImg->getFrameHeight());
 					vi_item->rc = RectMake(vi_item->itemDisplayRC.left + 2, vi_item->itemDisplayRC.top + 2, vi_item->Img->getWidth(), vi_item->Img->getHeight());
 				}
 				if (vi_item->kind == STOREKIND_ARMER)
 				{
-					vi_item->itemDisplayRC = RectMakeCenter(storeInfo.InstoreRC.right - (storeInfo.InstoreRC.right - storeInfo.InstoreRC.left) / 2, storeInfo.InstoreRC.top + 80 + ((vi_item->itemnum - 5) * (vi_item->itemDisplayImg->getHeight() + 2)), vi_item->itemDisplayImg->getWidth(), vi_item->itemDisplayImg->getHeight());
+					vi_item->itemDisplayRC = RectMakeCenter(storeInfo.InstoreRC.right - (storeInfo.InstoreRC.right - storeInfo.InstoreRC.left) / 2- vi_item->itemDisplayImg->getFrameWidth()/2, storeInfo.InstoreRC.top + 80 + ((vi_item->itemnum - 5) * (vi_item->itemDisplayImg->getHeight() + 2)), vi_item->itemDisplayImg->getFrameWidth(), vi_item->itemDisplayImg->getFrameHeight());
 					vi_item->rc = RectMake(vi_item->itemDisplayRC.left + 2, vi_item->itemDisplayRC.top + 2, vi_item->Img->getWidth(), vi_item->Img->getHeight());
 				}
-		
 		}
+				buy_item();
+		
 	}
 
 	
@@ -218,6 +250,13 @@ void store::update()
 		for (int i = 0; i < 5; i++)
 		{
 			_storeButton[i].isPush = false;
+		}
+		for (vi_item = v_item.begin(); vi_item != v_item.end(); ++vi_item)
+		{
+			if (vi_item->isSelect)
+			{
+				vi_item->isSelect = false;
+			}
 		}
 	}
 
@@ -236,10 +275,12 @@ void store::render()
 		}
 		for (vi_item = v_item.begin(); vi_item != v_item.end(); ++vi_item)
 		{
-
+			select_item(vi_item);
 			Button_PushRender(vi_item);
 
 		}
+		Not_select(isNotSelect);
+
 	}
 }
 
@@ -247,3 +288,47 @@ void store::set_storeXY(int x, int y)
 {
 	storeInfo.storeRC = RectMakeCenter(x, y, storeInfo.storeImg->getFrameWidth(), storeInfo.storeImg->getFrameHeight());
 }
+
+void store::select_item(VI_ITEM item)
+{
+	if (item->isSelect)
+	{
+		item->itemDisplayImg->setFrameX(1);
+	}
+	else
+	{
+		item->itemDisplayImg->setFrameX(0);
+	}
+}
+
+void store::buy_item()
+{
+	if (_storeButton[3].isPush)
+	{
+		for (int i=0;i<v_item.size();i++)
+		{
+			if (v_item[i].isSelect)
+			{
+				STORE_ITEM temp;
+				temp = v_item[i];
+				Inven->inven_push(temp);
+				PLAYER->Minus_Playermoney(v_item[i].price);
+				_storeButton[3].isPush = false;
+				v_item[i].isSelect = false;
+				break;
+			}
+			else
+			{
+				if (i == v_item.size()-1)
+				{
+					isNotSelect = true;
+				}
+			}
+
+		}
+	}
+
+}
+
+void store::pay_item(){}
+

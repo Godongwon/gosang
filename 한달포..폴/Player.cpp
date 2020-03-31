@@ -2,7 +2,7 @@
 #include "Player.h"
 #include"IsoMap.h"
 #include"Astar.h"
-
+#include"inven.h"
 Player::Player(){}
 Player::~Player(){}
 //============================================================
@@ -151,7 +151,47 @@ void Player::PlayerPointMake()
 {
 	_playerInfo.playerPoint = PointMake(_focusPlayerX, _playerInfo.playerRC.bottom );
 }
-
+void Player::PlayerMove()
+{
+	if (KEYMANAGER->isStayKeyDown('W'))//up
+	{
+		_playerInfo.playerWay = PlayerWay_top;
+		_playerInfo.playerMotion = Player_Move;
+		PlayerImgSelect();
+		_playerInfo.playerAni->start();
+		OffsetRect(&_playerInfo.playerimgRC, 0, -5);
+	}
+	else if (KEYMANAGER->isStayKeyDown('S'))//down
+	{
+		_playerInfo.playerWay = PlayerWay_bottom;
+		_playerInfo.playerMotion = Player_Move;
+		PlayerImgSelect();
+		_playerInfo.playerAni->start();
+		OffsetRect(&_playerInfo.playerimgRC, 0, 5);
+	}
+	else if (KEYMANAGER->isStayKeyDown('A'))//left
+	{
+		_playerInfo.playerWay = PlayerWay_left;
+		_playerInfo.playerMotion = Player_Move;
+		PlayerImgSelect();
+		_playerInfo.playerAni->start();
+		OffsetRect(&_playerInfo.playerimgRC, -5, 0);
+	}
+	else if (KEYMANAGER->isStayKeyDown('D'))//right
+	{
+		_playerInfo.playerWay = PlayerWay_right;
+		_playerInfo.playerMotion = Player_Move;
+		PlayerImgSelect();
+		_playerInfo.playerAni->start();
+		OffsetRect(&_playerInfo.playerimgRC, 5, 0);
+	}
+	else
+	{
+		_playerInfo.playerMotion = Player_Idle;
+		PlayerImgSelect();
+		_playerInfo.playerAni->start();
+	}
+}
 HRESULT Player::init()
 {
 	playerIdleImgAdd();
@@ -171,6 +211,8 @@ HRESULT Player::init()
 	_PlayerMonk = 0;
 
 	_isDebug = false;
+	Inven->init();
+	_isIninven = false;
 	return S_OK;
 }
 
@@ -188,43 +230,16 @@ void Player::update()
 	_focusPlayerY = _focusPlayerimgY;
 	CameraMove();
 	PlayerPointMake();
-	if (KEYMANAGER->isStayKeyDown('W'))//up
+	PlayerMove();
+	if (KEYMANAGER->isOnceKeyDown('I'))
 	{
-		_playerInfo.playerWay = PlayerWay_top;
-		_playerInfo.playerMotion = Player_Move;
-		PlayerImgSelect();
-		_playerInfo.playerAni->start();
-		OffsetRect(&_playerInfo.playerimgRC, 0, -5);
+		_isIninven = !_isIninven;
 	}
-	else if(KEYMANAGER->isStayKeyDown('S'))//down
+	if (_isIninven)
 	{
-		_playerInfo.playerWay = PlayerWay_bottom;
-		_playerInfo.playerMotion = Player_Move;
-		PlayerImgSelect();
-		_playerInfo.playerAni->start();
-		OffsetRect(&_playerInfo.playerimgRC, 0, 5);
-	}
-	else if (KEYMANAGER->isStayKeyDown('A'))//left
-	{
-		_playerInfo.playerWay = PlayerWay_left;
-		_playerInfo.playerMotion = Player_Move;
-		PlayerImgSelect();
-		_playerInfo.playerAni->start();
-		OffsetRect(&_playerInfo.playerimgRC, -5,0);
-	}
-	else if (KEYMANAGER->isStayKeyDown('D'))//right
-	{
-		_playerInfo.playerWay = PlayerWay_right;
-		_playerInfo.playerMotion = Player_Move;
-		PlayerImgSelect();
-		_playerInfo.playerAni->start();
-		OffsetRect(&_playerInfo.playerimgRC, 5, 0);
-	}
-	else
-	{
-		_playerInfo.playerMotion = Player_Idle;
-		PlayerImgSelect();
-		_playerInfo.playerAni->start();
+		Inven->set_invenRC(_focusPlayerX+350, _focusPlayerY-100);
+		Inven->update();
+
 	}
 	_playerInfo.playerRC = RectMakeCenter(_focusPlayerimgX, _focusPlayerimgY, 40, 70);
 	_playerInfo.playerAni->frameUpdate(_playerInfo.frameSpeed);
@@ -233,7 +248,6 @@ void Player::update()
 		_isDebug = !_isDebug;
 	}
 }
-
 void Player::render()
 {
 	if (_isDebug)
@@ -242,8 +256,12 @@ void Player::render()
 		Rectangle(getMemDC(), _playerInfo.playerRC.left, _playerInfo.playerRC.top, _playerInfo.playerRC.right, _playerInfo.playerRC.bottom);
 	}
 	_playerInfo.playerimg->aniRender(getMemDC(), _playerInfo.playerimgRC.left, _playerInfo.playerimgRC.top, _playerInfo.playerAni);
-}
+	if (_isIninven)
+	{
+		Inven->render();
 
+	}
+}
 void Player::player_setFocus(int x, int y)
 {
 	_playerInfo.playerimgRC = RectMakeCenter(x,y- (_playerInfo.playerimg->getFrameHeight()/2), _playerInfo.playerimg->getFrameWidth(), _playerInfo.playerimg->getFrameHeight());

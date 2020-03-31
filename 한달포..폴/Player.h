@@ -1,6 +1,7 @@
 #pragma once
 #include "base/gameNode.h"
 #include"warriorHead.h"
+
 enum Player_Way
 {
 	PlayerWay_bottom,
@@ -43,6 +44,7 @@ private:
 	int _PlayerGen;
 
 
+
 	//플레이어 이미지 추가
 	void playerIdleImgAdd();
 	void playerMoveImgAdd();
@@ -55,12 +57,15 @@ private:
 	void CameraMove();
 	//플레이어 포인트
 	void PlayerPointMake();
+	//플레이어 움직임
+	void PlayerMove();
 	
 	//플레이어 중점
 	int _focusPlayerimgX, _focusPlayerimgY;
 	int _focusPlayerX, _focusPlayerY;
 
 	bool _isDebug;
+	bool _isIninven;
 public:
 	Player();
 	~Player();

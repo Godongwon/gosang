@@ -1,0 +1,92 @@
+﻿  stdafx.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\commonmacrofunction.h(116): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Astar.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\astar.cpp(152): warning C4552: '-': 식의 결과가 사용되지 않습니다.
+  animation.cpp
+  effect.cpp
+  gameNode.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\base\gamenode.cpp(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'Player.h': No such file or directory
+  image.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\base\image.cpp(369): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\base\image.cpp(427): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\base\image.cpp(500): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\base\image.cpp(570): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  timer.cpp
+  utils.cpp
+  battle.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\battle.cpp(428): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\battle.cpp(446): warning C4477: 'sprintf_s' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'unsigned __int64'입니다.
+  c:\users\고동원\desktop\한달포폴\한달포..폴\battle.cpp(446): note: 서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\battle.cpp(451): warning C4477: 'sprintf_s' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'unsigned __int64'입니다.
+  c:\users\고동원\desktop\한달포폴\한달포..폴\battle.cpp(451): note: 서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
+  general.cpp
+  IsoMap.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\isomap.cpp(102): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\isomap.cpp(362): warning C4806: '==': 안전하지 않은 연산입니다. 'bool' 형식의 값('TILEKIND' 형식으로 확장)이 주어진 상수와 같을 수 없습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\isomap.cpp(371): warning C4806: '==': 안전하지 않은 연산입니다. 'bool' 형식의 값('TILEKIND' 형식으로 확장)이 주어진 상수와 같을 수 없습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\isomap.cpp(469): warning C4806: '==': 안전하지 않은 연산입니다. 'bool' 형식의 값('TILEKIND' 형식으로 확장)이 주어진 상수와 같을 수 없습니다.
+  inven.cpp
+  Kimyousin.cpp
+  mainGame.cpp
+  cameraManager.cpp
+  effectManager.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\manager\effectmanager.cpp(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'base/effect.h': No such file or directory
+  imageManager.cpp
+  keyManager.cpp
+  sceneManager.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\manager\scenemanager.cpp(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'base/gameNode.h': No such file or directory
+  soundManager.cpp
+  timeManager.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\manager\timemanager.cpp(54): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\manager\timemanager.cpp(58): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\manager\timemanager.cpp(61): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+c:\users\고동원\desktop\한달포폴\한달포..폴\isomap.cpp(415): warning C4715: 'IsoMap::kindSelect': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  컴파일하고 있습니다...
+  Maptool.cpp
+  monk.cpp
+  monster.cpp
+  Player.cpp
+  startScene.cpp
+  store.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(7): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(8): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(9): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(11): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(13): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(14): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(15): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(16): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(17): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(141): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\store.cpp(144): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SubIsoMap.cpp
+  townMonster.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\townmonster.cpp(278): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\townmonster.cpp(331): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\townmonster.cpp(336): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  TwonScene.cpp
+  warriorControl.cpp
+  WarriorInven.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorinven.cpp(19): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  warriorStore.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(8): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(9): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(11): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(21): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(22): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(24): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warriorstore.cpp(224): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  WarScene.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\warscene.cpp(35): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warscene.cpp(49): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warscene.cpp(203): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\한달포폴\한달포..폴\warscene.cpp(233): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Window.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\window.cpp(132): warning C4065: switch문에 'default'가 있으나 'case' 레이블이 없습니다.
+  winMain.cpp
+c:\users\고동원\desktop\한달포폴\한달포..폴\winmain.cpp(153): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...

@@ -2,8 +2,6 @@
 #include "base/gameNode.h"
 #include"itemHead.h"
 
-
-
 struct STORE_INFO
 {
 	image* storeImg;
@@ -34,16 +32,18 @@ private:
 	VI_ITEM vi_item;
 
 	bool isOpenStore;
-	
+	bool isNotSelect;
+	int NotSelectCount;
+
 protected:
 
 	void add_itemImg();
 	void release_itemImg();
-	void add_vItem(string name, STORE_KIND kind, int effect,int itemnum);
+	void add_vItem(string name, STORE_KIND kind, int effect,int itemnum,int price);
 	void add_Buttoninit();
 	void Button_Push(int i);
 	void Button_PushRender(VI_ITEM item);
-
+	void Not_select(bool is);
 public:
 	store();
 	~store();
@@ -56,5 +56,9 @@ public:
 
 	bool get_isOpenStore() {return isOpenStore;}
 	void set_storeXY(int x, int y);
+	void select_item(VI_ITEM item);
+	void buy_item();
+	void pay_item();
+	
 };
 
