@@ -117,7 +117,7 @@ void WarScene::update()
 void WarScene::render()
 {
 	Draw();
-	IMAGEMANAGER->findImage("Interface")->render(CAMERAMANAGER->getCameraDC(), 0, 0);
+	IMAGEMANAGER->findImage("Interface")->render(CAMERAMANAGER->getCameraDC(), 1024- (360 * 1.5), 0);
 	_monsterChild->HP_render();
 	_battle->warScene_render();
 	_monsterChild->render();

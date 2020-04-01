@@ -4,6 +4,9 @@
 class WarriorInven : public gameNode,public singletonBase<WarriorInven>
 {
 private:
+	image* warriorimg;
+	RECT warriorRC;
+
 	image* warriorInvenImg;
 	RECT warriorInvenRC;
 
@@ -30,6 +33,7 @@ public:
 	void set_warriorInvenRC(int x, int y);
 	void set_isitemMove(bool is) { isitemMove = is; }
 	RECT get_warriorInvenRC() {	return warriorInvenRC;}
+
 };
 
 #define WInven WarriorInven::getSingleton()

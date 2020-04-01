@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "itemHead.h"
+#include"progressBar.h"
 
 enum WARRIOR_WAY
 {
@@ -36,12 +37,14 @@ struct WARRIOR_INFO
 	WARRIOR_MOTION warriorMonsion;	//용병모션
 	WARRIOR_WAY warriorWay;		//용병방향
 	STORE_ITEM warriorItem[2];
-	
+	image* warriorPotraitimg;
+	RECT warriorPotraitRC;
 	image* inGamewarriorImg;
 	RECT inGamewarroirRC;
 	animation* inGamewarriorAni;
+	progressBar* warriorProgressBar;
 
-
+	
 	//중점
 	int x;
 	int y;

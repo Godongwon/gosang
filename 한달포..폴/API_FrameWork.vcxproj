@@ -160,6 +160,8 @@
     <ClInclude Include="battle.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="general.h" />
+    <ClInclude Include="interFace.h" />
+    <ClInclude Include="interFaceWarriorDisplay.h" />
     <ClInclude Include="itemHead.h" />
     <ClInclude Include="inven.h" />
     <ClInclude Include="Kimyousin.h" />
@@ -180,6 +182,7 @@
     <ClInclude Include="Maptool.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="progressBar.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="startScene.h" />
     <ClInclude Include="stdafx.h" />
@@ -205,6 +208,7 @@
     <ClCompile Include="base\utils.cpp" />
     <ClCompile Include="battle.cpp" />
     <ClCompile Include="general.cpp" />
+    <ClCompile Include="interFace.cpp" />
     <ClCompile Include="IsoMap.cpp" />
     <ClCompile Include="inven.cpp" />
     <ClCompile Include="Kimyousin.cpp" />
@@ -220,12 +224,14 @@
     <ClCompile Include="monk.cpp" />
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="startScene.cpp" />
     <ClCompile Include="store.cpp" />
     <ClCompile Include="SubIsoMap.cpp" />
     <ClCompile Include="townMonster.cpp" />
     <ClCompile Include="TwonScene.cpp" />
     <ClCompile Include="warriorControl.cpp" />
+    <ClCompile Include="interFaceWarriorDisplay.cpp" />
     <ClCompile Include="WarriorInven.cpp" />
     <ClCompile Include="warriorStore.cpp" />
     <ClCompile Include="WarScene.cpp" />

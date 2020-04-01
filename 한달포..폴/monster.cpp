@@ -389,6 +389,6 @@ void monster::HP_render()
 	{
 		char str[128];
 		sprintf_s(str, "%d번몬스터 채력 : %d HP", vi_monsterChild->monsterChildNum, vi_monsterChild->Hp);
-		FontTextOut(CAMERAMANAGER->getCameraDC(), 15,75+ (30 * vi_monsterChild->monsterChildNum), str, 15, "HY견고딕", RGB(254, 254, 254));
+		FontTextOut(CAMERAMANAGER->getCameraDC(), 1024-200,75+ (30 * vi_monsterChild->monsterChildNum), str, 15, "HY견고딕", RGB(254, 254, 254));
 	}
 }

@@ -444,12 +444,12 @@ void battle::warScene_render()
 {
 	char str[128];
 	sprintf_s(str, "고용한 용병 수 : %d명",PLAYER->get_vPlayerWarrior().size());
-	FontTextOut(CAMERAMANAGER->getCameraDC(), 35, 345 , str, 15, "HY견고딕", RGB(254, 254, 254));
+	FontTextOut(CAMERAMANAGER->getCameraDC(), 1024 - 185, 345 , str, 15, "HY견고딕", RGB(254, 254, 254));
 
-	FontTextOut(CAMERAMANAGER->getCameraDC(), 29, 425, "전투에 살아있는 용병 수", 15, "HY견고딕", RGB(254, 254, 254));
+	FontTextOut(CAMERAMANAGER->getCameraDC(), 1024 - 190, 425, "전투에 살아있는 용병 수", 15, "HY견고딕", RGB(254, 254, 254));
 	char str1[128];
 	sprintf_s(str1, "%d명", v_battlePlayerWarrior.size());
-	FontTextOut(CAMERAMANAGER->getCameraDC(), 90, 445, str1, 15, "HY견고딕", RGB(254, 254, 254));
+	FontTextOut(CAMERAMANAGER->getCameraDC(), 1024 - 110, 445, str1, 15, "HY견고딕", RGB(254, 254, 254));
 }
 
 void battle::warrior_die()

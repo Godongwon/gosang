@@ -454,6 +454,7 @@ void warriorStore::buy_warrior()
 				temp = WARRIORCONTROL->get_Vwarrior()[i];
 				PLAYER->get_vPlayerWarriorPush(temp);
 				PLAYER->Minus_Playermoney(temp.price);
+				PLAYER->get_interFace()->get_warriorDisplay()->Display_clear(true);
 				_kim -=1;
 				PLAYER->set_PlayerWarrior(WARRIOR_KIM, 1, true);
 				WARRIORCONTROL->removeVector(i);
@@ -487,6 +488,7 @@ void warriorStore::buy_warrior()
 				temp = WARRIORCONTROL->get_Vwarrior()[i];
 				PLAYER->get_vPlayerWarriorPush(temp);
 				PLAYER->Minus_Playermoney(temp.price);
+				PLAYER->get_interFace()->get_warriorDisplay()->Display_clear(true);
 				_monk -=1;
 				PLAYER->set_PlayerWarrior(WARRIOR_MONK, 1, true);
 				WARRIORCONTROL->removeVector(i);
@@ -521,6 +523,7 @@ void warriorStore::buy_warrior()
 				temp = WARRIORCONTROL->get_Vwarrior()[i];
 				PLAYER->get_vPlayerWarriorPush(temp);
 				PLAYER->Minus_Playermoney(temp.price);
+				PLAYER->get_interFace()->get_warriorDisplay()->Display_clear(true);
 				_gen -= 1;
 				PLAYER->set_PlayerWarrior(WARRIOR_GENERAL, 1, true);
 				WARRIORCONTROL->removeVector(i);
@@ -559,6 +562,7 @@ void warriorStore::pay_warrior()
 				WARRIORCONTROL->WarriorPush(temp);
 				PLAYER->Plus_Playermoney(temp.price);
 				PLAYER->removePlayer(i);
+				PLAYER->get_interFace()->get_warriorDisplay()->Display_clear(true);
 				_kim += 1;
 				PLAYER->set_PlayerWarrior(WARRIOR_KIM, 1, false);
 				_playerWarriorPotrait[0].isClick = false;
@@ -578,6 +582,7 @@ void warriorStore::pay_warrior()
 				WARRIORCONTROL->WarriorPush(temp);
 				PLAYER->Plus_Playermoney(temp.price);
 				PLAYER->removePlayer(i);
+				PLAYER->get_interFace()->get_warriorDisplay()->Display_clear(true);
 				_monk += 1;
 				PLAYER->set_PlayerWarrior(WARRIOR_MONK, 1, false);
 				_playerWarriorPotrait[1].isClick = false;
@@ -597,6 +602,7 @@ void warriorStore::pay_warrior()
 				WARRIORCONTROL->WarriorPush(temp);
 				PLAYER->Plus_Playermoney(temp.price);
 				PLAYER->removePlayer(i);
+				PLAYER->get_interFace()->get_warriorDisplay()->Display_clear(true);
 				_gen += 1;
 				PLAYER->set_PlayerWarrior(WARRIOR_GENERAL, 1, false);
 				_playerWarriorPotrait[2].isClick = false;

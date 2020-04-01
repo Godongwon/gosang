@@ -214,7 +214,7 @@ void Player::In_warriorInven()
 	}
 	if (_isInWarriorInven)
 	{
-		WInven->set_warriorInvenRC(_focusPlayerX - 350, _focusPlayerY - 100);
+		WInven->set_warriorInvenRC(_focusPlayerX , _focusPlayerY - 100);
 		WInven->update();
 
 	}
@@ -345,6 +345,8 @@ HRESULT Player::init()
 	WInven->init();
 	_isIninven = false;
 	_isInWarriorInven = false;
+	_interface = new interFace;
+	_interface->init();
 	return S_OK;
 }
 void Player::release()
@@ -354,6 +356,7 @@ void Player::release()
 }
 void Player::update()
 {
+	
 	_focusPlayerimgX = _playerInfo.playerimgRC.right - (_playerInfo.playerimgRC.right - _playerInfo.playerimgRC.left) / 2;
 	_focusPlayerimgY = _playerInfo.playerimgRC.bottom - (_playerInfo.playerimgRC.bottom - _playerInfo.playerimgRC.top) / 2;
 	_focusPlayerX = _focusPlayerimgX;
@@ -368,7 +371,7 @@ void Player::update()
 	{
 		Remodeling_item();
 	}
-
+	_interface->update();
 	_playerInfo.playerRC = RectMakeCenter(_focusPlayerimgX, _focusPlayerimgY, 40, 70);
 	_playerInfo.playerAni->frameUpdate(_playerInfo.frameSpeed);
 	if (KEYMANAGER->isOnceKeyDown(VK_F1))
@@ -400,6 +403,7 @@ void Player::render()
 	{
 		WInven->itemRender();
 	}
+	_interface->render();
 }
 void Player::player_setFocus(int x, int y)
 {

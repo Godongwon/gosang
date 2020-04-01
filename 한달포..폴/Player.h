@@ -1,7 +1,7 @@
 #pragma once
 #include "base/gameNode.h"
 #include"warriorHead.h"
-
+#include"interFace.h"
 enum Player_Way
 {
 	PlayerWay_bottom,
@@ -43,7 +43,7 @@ private:
 	int _PlayerMonk;
 	int _PlayerGen;
 	int _itemtype;
-
+	interFace* _interface;
 
 	//플레이어 이미지 추가
 	void playerIdleImgAdd();
@@ -127,5 +127,6 @@ public:
 		vi_playerWarrior = v_playerWarrior.begin() + playerWarrior;
 		return vi_playerWarrior->warriorItem[warrioritemNum];
 	}
+	interFace* get_interFace() { return _interface; }
 };
 

@@ -5,6 +5,9 @@
 void WarriorInven::add_image()
 {
 	IMAGEMANAGER->addImage("용병인벤토리", "resource/image/용병인벤/용병인벤창.bmp", 336, 418);
+	IMAGEMANAGER->addImage("김유신이미지", "resource/image/용병인벤/용병이미지/김유신인벤.bmp", 80, 80);
+	IMAGEMANAGER->addImage("스님이미지", "resource/image/용병인벤/용병이미지/스님인벤.bmp", 80, 80);
+	IMAGEMANAGER->addImage("장군이미지", "resource/image/용병인벤/용병이미지/장군인벤.bmp", 80, 80);
 }
 void WarriorInven::set_vectorNum()
 {
@@ -20,9 +23,9 @@ void WarriorInven::set_vectorNum()
 			vectorNum = PLAYER->get_vPlayerWarrior().size() - 1;
 		}
 	}
-	else if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	else if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 	{
-		if (vectorNum < 0)
+		if (vectorNum > 0)
 		{
 			vectorNum -= 1;
 		}
@@ -41,6 +44,7 @@ HRESULT WarriorInven::init()
 {
 	add_image();
 	warriorInvenImg = IMAGEMANAGER->findImage("용병인벤토리");
+	
 	vectorNum=0;
 
 	
@@ -63,6 +67,19 @@ void WarriorInven::update()
 			set_vectorNum();
 			PLAYER->set_ItemRC(vectorNum, 0, warriorInvenRC.left + 123, warriorInvenRC.top + 223);
 			PLAYER->set_ItemRC(vectorNum, 1, warriorInvenRC.left + 187, warriorInvenRC.top + 223);
+			warriorRC = RectMake(warriorInvenRC.left + 22, warriorInvenRC.top + 157, 80, 80);
+			if (PLAYER->get_vPlayerWarrior()[vectorNum].warriornum == WARRIOR_KIM)
+			{
+				warriorimg = IMAGEMANAGER->findImage("김유신이미지");
+			}
+			else if (PLAYER->get_vPlayerWarrior()[vectorNum].warriornum == WARRIOR_GENERAL)
+			{
+				warriorimg = IMAGEMANAGER->findImage("장군이미지");
+			}
+			else if (PLAYER->get_vPlayerWarrior()[vectorNum].warriornum == WARRIOR_MONK)
+			{
+				warriorimg = IMAGEMANAGER->findImage("스님이미지");
+			}
 		}
 
 	}
@@ -85,7 +102,21 @@ void WarriorInven::render()
 		FontTextOut(getMemDC(), warriorInvenRC.left + 62, warriorInvenRC.top + 330, DEF, 10, "HY견고딕", RGB(254, 254, 254));
 		WeaponitemRECT = PLAYER->get_ItemRC(vectorNum, 0);
 		ArmeritemRECT = PLAYER->get_ItemRC(vectorNum, 1);
+		warriorimg->render(getMemDC(), warriorRC.left, warriorRC.top);
+		if (PLAYER->get_vPlayerWarrior()[vectorNum].warriornum == WARRIOR_KIM)
+		{
+			FontTextOut(getMemDC(), warriorInvenRC.left + 30, warriorRC.bottom + 10, "김유신", 25, "HY견고딕", RGB(254, 254, 254));
+		}
+		else if (PLAYER->get_vPlayerWarrior()[vectorNum].warriornum == WARRIOR_GENERAL)
+		{
+			FontTextOut(getMemDC(), warriorInvenRC.left + 40, warriorRC.bottom + 10, "장군", 25, "HY견고딕", RGB(254, 254, 254));
 
+		}
+		else if (PLAYER->get_vPlayerWarrior()[vectorNum].warriornum == WARRIOR_MONK)
+		{
+			FontTextOut(getMemDC(), warriorInvenRC.left + 40, warriorRC.bottom + 10, "스님", 25, "HY견고딕", RGB(254, 254, 254));
+
+		}
 		
 	}
 

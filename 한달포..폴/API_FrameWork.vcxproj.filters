@@ -100,6 +100,12 @@
     <Filter Include="Object\플레이어\용병인벤토리">
       <UniqueIdentifier>{d3394ce8-e228-4dad-b7fc-cfb22d51b145}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base\progressBar">
+      <UniqueIdentifier>{084c6bab-0fca-4fec-b060-b5c663917efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\용병화면">
+      <UniqueIdentifier>{63a370b7-435a-4563-9d3b-9d06e57d6927}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -240,6 +246,15 @@
     <ClInclude Include="mainGame.h">
       <Filter>mainGame</Filter>
     </ClInclude>
+    <ClInclude Include="interFace.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="progressBar.h">
+      <Filter>base\progressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="interFaceWarriorDisplay.h">
+      <Filter>UI\용병화면</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -349,6 +364,15 @@
     </ClCompile>
     <ClCompile Include="WarriorInven.cpp">
       <Filter>Object\플레이어\용병인벤토리</Filter>
+    </ClCompile>
+    <ClCompile Include="interFace.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="progressBar.cpp">
+      <Filter>base\progressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="interFaceWarriorDisplay.cpp">
+      <Filter>UI\용병화면</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
