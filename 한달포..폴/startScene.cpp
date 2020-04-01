@@ -53,6 +53,9 @@ HRESULT startScene::init()
 		}
 		button[i].isPush = false;
 	}
+	SOUNDMANAGER->addSound("startMusic", "resource/sound/Scene/startScene.wav", true, true);
+	SOUNDMANAGER->play("startMusic");
+
 
 	return S_OK;
 }
@@ -86,6 +89,7 @@ void startScene::update()
 	}
 	if (button[0].isPush)//게임시작
 	{
+		SOUNDMANAGER->pause("startMusic");
 		SCENEMANAGER->changeScene("Twon");
 	}
 	if (button[1].isPush)//맵툴

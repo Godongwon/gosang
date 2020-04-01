@@ -44,6 +44,9 @@ HRESULT TwonScene::init()
 	PLAYER->player_setFocus(_tileMap[69][69].centerX, _tileMap[69][69].centerY);
 	istextOut = false;
 	_textCount = 0;
+	SOUNDMANAGER->addSound("TwonMusic", "resource/sound/Scene/twonScene.wav", true, true);
+	SOUNDMANAGER->play("TwonMusic");
+	
 	
 	return S_OK;
 }
@@ -68,6 +71,7 @@ void TwonScene::update()
 		}
 		else
 		{
+			SOUNDMANAGER->pause("TwonMusic");
 			SCENEMANAGER->changeScene("War");
 		}
 	}

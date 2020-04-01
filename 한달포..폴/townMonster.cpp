@@ -331,9 +331,9 @@ void townMonster::render()
 			TextOut(getMemDC(), vi_monster->monsterRC.left, vi_monster->monsterRC.top, str, strlen(str));
 			Rectangle(getMemDC(), vi_monster->collisionRC.left, vi_monster->collisionRC.top, vi_monster->collisionRC.right, vi_monster->collisionRC.bottom);
 		}
-		char str[128];
-		sprintf_s(str, "%d",imgY);
-		TextOut(CAMERAMANAGER->getCameraDC(),WINSIZEX/2,0, str, strlen(str));
+		//char str[128];
+		//sprintf_s(str, "%d",imgY);
+		//TextOut(CAMERAMANAGER->getCameraDC(),WINSIZEX/2,0, str, strlen(str));
 		vi_monster->monsterImg->aniRender(getMemDC(), vi_monster->monsterRC.left, vi_monster->monsterRC.top, vi_monster->monsterAni);
 	
 	}

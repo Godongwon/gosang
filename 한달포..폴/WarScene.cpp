@@ -47,7 +47,10 @@ HRESULT WarScene::init()
 	_buttonImg = IMAGEMANAGER->findImage("WarSceneButton");
 
 	IMAGEMANAGER->addImage("Interface", "resource/image/warScene/interface.bmp", 360*1.5, 384 * 1.5);
-
+	SOUNDMANAGER->addSound("warMusic", "resource/sound/Scene/warScene.wav", true, true);
+	SOUNDMANAGER->addSound("playerV", "resource/sound/warScene/Win.wav",true);
+	SOUNDMANAGER->addSound("playerL", "resource/sound/warScene/Lose.wav", true);
+	SOUNDMANAGER->play("warMusic");
 
 	return S_OK;
 }
@@ -73,10 +76,14 @@ void WarScene::update()
 		PLAYER->update();
 		if (_battle->get_vBattlePlayerWarrior().size() <= 0)
 		{
+			SOUNDMANAGER->pause("warMusic");
+			SOUNDMANAGER->play("playerL");
 			_isMonsterWin = true;
 		}
 		else if (_monsterChild->get_vMonsterChild().size() <= 0)
 		{
+			SOUNDMANAGER->pause("warMusic");
+			SOUNDMANAGER->play("playerV");
 			_isplayerWin = true;
 			PLAYER->Plus_Playermoney(2000);
 		}
@@ -101,6 +108,8 @@ void WarScene::update()
 	}
 	if (_isPush)
 	{
+		SOUNDMANAGER->pause("playerL");
+		SOUNDMANAGER->pause("playerV");
 		SCENEMANAGER->changeScene("Twon");
 	}
 }
@@ -112,8 +121,8 @@ void WarScene::render()
 	_monsterChild->HP_render();
 	_battle->warScene_render();
 	_monsterChild->render();
-	PLAYER->render();
 	_battle->render();
+	PLAYER->render();
 
 
 	
@@ -204,11 +213,6 @@ void WarScene::Collition()
 				{
 					_battle->set_PlayerWarriorAtkmod(j, true);
 					_monsterChild->set_monsterAtkMod(i, true);
-					if (KEYMANAGER->isOnceKeyDown('M'))
-					{
-						_battle->set_PlayerWarriorAtkmod(j, false);
-						_monsterChild->set_monsterAtkMod(i, false);
-					}
 				}
 			}
 			else
@@ -232,8 +236,8 @@ void WarScene::Collition()
 			{
 				if (getDistance(_battle->get_vBattlePlayerWarrior()[j].x, _battle->get_vBattlePlayerWarrior()[j].y, _monsterChild->get_vMonsterChild()[i].x, _monsterChild->get_vMonsterChild()[i].y) < 100)
 				{
-					_monsterChild->set_monsterAtkMod(i, true);
 					_battle->set_PlayerWarriorAtkmod(j, true);
+					_monsterChild->set_monsterAtkMod(i, true);
 				}
 				else
 				{
@@ -269,7 +273,7 @@ void WarScene::Warrior_Atk()
 				if (currentFrame >= maxFrame)
 				{
 					_monsterChild->Minus_monsterHP(i, _battle->get_vBattlePlayerWarrior()[j].atk);
-					_battle->set_PlayerWarriorAtkmod(j, false);
+					//_battle->set_PlayerWarriorAtkmod(j, false);
 				}
 
 
@@ -296,7 +300,7 @@ void WarScene::Monster_Atk()
 				if (currentFrame >= maxFrame)
 				{
 					_battle->Minus_warriorHP(i, 20);
-					_monsterChild->set_monsterAtkMod(j, false);
+					//_monsterChild->set_monsterAtkMod(j, false);
 				}
 			}			
 		}

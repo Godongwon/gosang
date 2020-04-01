@@ -423,9 +423,9 @@ void battle::render()
 		//sprintf_s(str, "|%d", vi_battlePlayerWarrior->HP);
 		//TextOut(CAMERAMANAGER->getCameraDC(), WINSIZEX -50, 0, str, strlen(str));
 	}
-	char str[128];
-	sprintf_s(str, "%d|%d", _atkMouseX, _atkMouseY);
-	TextOut(CAMERAMANAGER->getCameraDC(), WINSIZEX / 2, 0, str, strlen(str));
+	//char str[128];
+	//sprintf_s(str, "%d|%d", _atkMouseX, _atkMouseY);
+	//TextOut(CAMERAMANAGER->getCameraDC(), WINSIZEX / 2, 0, str, strlen(str));
 }
 
 void battle::warrior_RCmake(int num, int x, int y)
