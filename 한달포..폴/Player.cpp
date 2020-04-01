@@ -3,6 +3,7 @@
 #include"IsoMap.h"
 #include"Astar.h"
 #include"inven.h"
+#include"WarriorInven.h"
 Player::Player(){}
 Player::~Player(){}
 //============================================================
@@ -192,6 +193,135 @@ void Player::PlayerMove()
 		_playerInfo.playerAni->start();
 	}
 }
+void Player::In_inven()
+{
+	if (KEYMANAGER->isOnceKeyDown('I'))
+	{
+		_isIninven = !_isIninven;
+	}
+	if (_isIninven)
+	{
+		Inven->set_invenRC(_focusPlayerX + 350, _focusPlayerY - 100);
+		Inven->update();
+
+	}
+}
+void Player::In_warriorInven()
+{
+	if (KEYMANAGER->isOnceKeyDown('O'))
+	{
+		_isInWarriorInven = !_isInWarriorInven;
+	}
+	if (_isInWarriorInven)
+	{
+		WInven->set_warriorInvenRC(_focusPlayerX - 350, _focusPlayerY - 100);
+		WInven->update();
+
+	}
+}
+void Player::Mounting_item()
+{
+	
+	if (_isIninven)
+	{
+		for (int i = 0; i < Inven->get_vitem().size(); i++)
+		{
+				
+			if(PtInRect(&Inven->get_vitem()[i].rc, m_ptMouse))
+			{
+				if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
+				{
+					Inven->set_itemRC(i, m_ptMouse.x, m_ptMouse.y);
+					if (v_playerWarrior.size() != 0)
+					{
+
+						if (Inven->get_vitem()[i].kind == STOREKIND_WEAPON)
+						{
+							_itemtype = 0;
+						}
+						else if (Inven->get_vitem()[i].kind == STOREKIND_ARMER)
+						{
+							_itemtype = 1;
+						}
+						RECT temp;
+						if (_isInWarriorInven&&IntersectRect(&temp, &Inven->get_vitem()[i].rc, &get_ItemRC(WInven->get_vectorNum(), _itemtype)))
+						{
+							if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+							{
+								vi_playerWarrior = v_playerWarrior.begin() + WInven->get_vectorNum();
+								vi_playerWarrior->warriorItem[_itemtype] = Inven->get_vitem()[i];
+								if (_itemtype == 0)
+								{
+									vi_playerWarrior->atk += Inven->get_vitem()[i].effect;
+								}
+								else if (_itemtype == 1)
+								{
+									vi_playerWarrior->def += Inven->get_vitem()[i].effect;
+								}
+								Inven->remove_vitem(i);
+								Inven->set_isMove(false);
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					Inven->set_isMove(false);
+				}
+			}
+			
+		}
+	}
+}
+void Player::Remodeling_item()
+{
+	if (_isInWarriorInven)
+	{
+		for (int i = 0; i < v_playerWarrior.size(); i++)
+		{
+			for (int j = 0; j < 2; j++)
+			{
+				if (PtInRect(&v_playerWarrior[i].warriorItem[j].rc, m_ptMouse))
+				{
+					if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
+					{
+						WInven->set_isitemMove(true);
+						vi_playerWarrior = v_playerWarrior.begin() + i;
+						vi_playerWarrior->warriorItem[j].rc = RectMakeCenter(m_ptMouse.x, m_ptMouse.y, 62, 62);
+						RECT temp;
+						if (IntersectRect(&temp, &vi_playerWarrior->warriorItem[j].rc, &Inven->get_invenRC()))
+						{
+							Inven->inven_push(vi_playerWarrior->warriorItem[j]);
+							if (j == 0)
+							{
+								vi_playerWarrior->atk -= vi_playerWarrior->warriorItem[j].effect;
+							}
+							else if (j == 1)
+							{
+								vi_playerWarrior->def -= vi_playerWarrior->warriorItem[j].effect;
+							}
+							ZeroMemory(&vi_playerWarrior->warriorItem[j],sizeof(STORE_ITEM));
+							if (j == 0)
+							{
+								vi_playerWarrior->warriorItem[j].rc = RectMake(WInven->get_warriorInvenRC().left + 123, WInven->get_warriorInvenRC().top + 223, 62, 62);
+							}
+							else if (j == 1)
+							{
+								vi_playerWarrior->warriorItem[j].rc = RectMake(WInven->get_warriorInvenRC().left + 123, WInven->get_warriorInvenRC().top + 223, 62, 62);
+							}
+							break;
+						}
+					}
+					else
+					{
+						WInven->set_isitemMove(false);
+					}
+				}
+			}
+		}
+	}
+}
 HRESULT Player::init()
 {
 	playerIdleImgAdd();
@@ -212,16 +342,16 @@ HRESULT Player::init()
 
 	_isDebug = false;
 	Inven->init();
+	WInven->init();
 	_isIninven = false;
+	_isInWarriorInven = false;
 	return S_OK;
 }
-
 void Player::release()
 {
 	playerIdleImgRelese();
 	playerMoveImgRelese();
 }
-
 void Player::update()
 {
 	_focusPlayerimgX = _playerInfo.playerimgRC.right - (_playerInfo.playerimgRC.right - _playerInfo.playerimgRC.left) / 2;
@@ -231,16 +361,14 @@ void Player::update()
 	CameraMove();
 	PlayerPointMake();
 	PlayerMove();
-	if (KEYMANAGER->isOnceKeyDown('I'))
+	In_inven();
+	Mounting_item();
+	In_warriorInven();
+	if (v_playerWarrior.size() != 0)
 	{
-		_isIninven = !_isIninven;
+		Remodeling_item();
 	}
-	if (_isIninven)
-	{
-		Inven->set_invenRC(_focusPlayerX+350, _focusPlayerY-100);
-		Inven->update();
 
-	}
 	_playerInfo.playerRC = RectMakeCenter(_focusPlayerimgX, _focusPlayerimgY, 40, 70);
 	_playerInfo.playerAni->frameUpdate(_playerInfo.frameSpeed);
 	if (KEYMANAGER->isOnceKeyDown(VK_F1))
@@ -259,7 +387,18 @@ void Player::render()
 	if (_isIninven)
 	{
 		Inven->render();
-
+	}
+	if (_isInWarriorInven)
+	{
+		WInven->render();
+	}
+	if (_isIninven)
+	{
+		Inven->item_render();
+	}
+	if (_isInWarriorInven)
+	{
+		WInven->itemRender();
 	}
 }
 void Player::player_setFocus(int x, int y)

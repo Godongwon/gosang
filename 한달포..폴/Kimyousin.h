@@ -17,6 +17,6 @@ public:
 
 	void add_kimyouSinImg();
 	void release_kinyouSinImg();
-	//void add_kimyou
+
 };
 

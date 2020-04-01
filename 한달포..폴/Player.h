@@ -42,7 +42,7 @@ private:
 	int _PlayerKim;
 	int _PlayerMonk;
 	int _PlayerGen;
-
+	int _itemtype;
 
 
 	//플레이어 이미지 추가
@@ -59,13 +59,21 @@ private:
 	void PlayerPointMake();
 	//플레이어 움직임
 	void PlayerMove();
+	//인벤오픈
+	void In_inven();
+	void In_warriorInven();
 	
+	void Mounting_item();
+	void Remodeling_item();
+
 	//플레이어 중점
 	int _focusPlayerimgX, _focusPlayerimgY;
 	int _focusPlayerX, _focusPlayerY;
 
+
 	bool _isDebug;
 	bool _isIninven;
+	bool _isInWarriorInven;
 public:
 	Player();
 	~Player();
@@ -89,21 +97,35 @@ public:
 		_playerInfo.money = _playerInfo.money - money;
 	}
 	RECT player_getplayerRECT() {return _playerInfo.playerRC;}
-
 	V_PLAYERWRRIOR get_vPlayerWarrior() {  return v_playerWarrior;	}
-
 	VI_PLAYERWRRIOR get_viPlayerWarrior() { return vi_playerWarrior; }
-
+	void set_viPlayerWarrior(VI_PLAYERWRRIOR playerWarrior) { vi_playerWarrior = playerWarrior; }
 	void removePlayer(int i);
 	void get_vPlayerWarriorPush(WARRIOR_INFO temp) { v_playerWarrior.push_back(temp); }
-
 	int get_Playerkim() { return _PlayerKim; }
 	int get_PlayerMonk() { return _PlayerMonk; }
 	int get_PlayerGen() { return _PlayerGen; }
-
+	bool get_isInWarriorinven() { return _isInWarriorInven; }
+	bool set_isIninven(bool is) { _isIninven = is; }
+	bool set_isInWarriorinven(bool is) { _isInWarriorInven = is; }
 	//bool : ture +  false -
 	void set_PlayerWarrior(WARRIOR_NUM warrior, int num, bool plus);
-	
 
+	//아이템장착
+	RECT get_ItemRC(int playerWarrior, int warrioritemNum)
+	{
+		vi_playerWarrior = v_playerWarrior.begin() + playerWarrior;
+		return vi_playerWarrior->warriorItem[warrioritemNum].rc;
+	}
+	void set_ItemRC(int  playerWarrior, int warrioritemNum, int x, int y)
+	{
+		vi_playerWarrior = v_playerWarrior.begin() + playerWarrior;
+		vi_playerWarrior->warriorItem[warrioritemNum].rc = RectMake(x, y, 62, 62);
+	}
+	STORE_ITEM get_item(int playerWarrior, int warrioritemNum)
+	{
+		vi_playerWarrior = v_playerWarrior.begin() + playerWarrior;
+		return vi_playerWarrior->warriorItem[warrioritemNum];
+	}
 };
 

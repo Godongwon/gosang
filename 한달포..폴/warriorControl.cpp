@@ -70,6 +70,8 @@ void warriorControl::add_KimyouSin()
 	warrior.frameSpeed = 0.2f;
 	warrior.isSelect = false;
 	warrior.isAtkmod = false;
+	//0 æ∆¿Ã≈€
+	//warrior.warriorItem[0].
 	v_warrior.push_back(warrior);
 }
 

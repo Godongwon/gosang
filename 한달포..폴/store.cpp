@@ -181,7 +181,7 @@ void store::release()
 {
 	IMAGEMANAGER->deleteImage("store");
 	IMAGEMANAGER->deleteImage("InStore");
-	release_itemImg();
+	//release_itemImg();
 }
 
 void store::update()
