@@ -15,7 +15,7 @@ HRESULT mainGame::init()
 	SCENEMANAGER->addScene("War",new WarScene);
 	SCENEMANAGER->addScene("StartScene",new startScene);
 
-	SCENEMANAGER->changeScene("Maptool");
+	SCENEMANAGER->changeScene("StartScene");
 
 	
 	return S_OK;

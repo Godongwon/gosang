@@ -1,0 +1,110 @@
+﻿  stdafx.cpp
+  Astar.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\astar.cpp(152): warning C4552: '-': 식의 결과가 사용되지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\astar.cpp(286): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\astar.cpp(301): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\astar.cpp(317): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  animation.cpp
+  effect.cpp
+  gameNode.cpp
+  image.cpp
+  timer.cpp
+  utils.cpp
+  battle.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\battle.cpp(9): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  general.cpp
+  interFace.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\interface.cpp(13): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\interface.cpp(73): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  IsoMap.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\isomap.cpp(389): warning C4806: '==': 안전하지 않은 연산입니다. 'bool' 형식의 값('TILEKIND' 형식으로 확장)이 주어진 상수와 같을 수 없습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\isomap.cpp(490): warning C4806: '==': 안전하지 않은 연산입니다. 'bool' 형식의 값('TILEKIND' 형식으로 확장)이 주어진 상수와 같을 수 없습니다.
+  inven.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\inven.cpp(31): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Kimyousin.cpp
+  mainGame.cpp
+  cameraManager.cpp
+  effectManager.cpp
+  imageManager.cpp
+  keyManager.cpp
+  sceneManager.cpp
+  soundManager.cpp
+  코드를 생성하고 있습니다...
+c:\users\고동원\desktop\github\gosang\한달포..폴\isomap.cpp(436): warning C4715: 'IsoMap::kindSelect': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  컴파일하고 있습니다...
+  timeManager.cpp
+  Maptool.cpp
+  monk.cpp
+  monster.cpp
+  Player.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\player.cpp(227): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\player.cpp(281): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  progressBar.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\progressbar.cpp(14): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\progressbar.cpp(15): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\progressbar.cpp(17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\progressbar.cpp(53): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  startScene.cpp
+  store.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(7): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(8): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(9): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(11): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(13): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(14): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(15): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(16): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(17): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(137): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(141): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\store.cpp(351): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  SubIsoMap.cpp
+  townMonster.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\townmonster.cpp(278): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  TwonScene.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\twonscene.cpp(38): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\twonscene.cpp(196): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  warriorControl.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorcontrol.cpp(78): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorcontrol.cpp(106): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorcontrol.cpp(135): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  interFaceWarriorDisplay.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\interfacewarriordisplay.cpp(29): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  WarriorInven.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorinven.cpp(17): warning C4018: '>': signed 또는 unsigned가 일치하지 않습니다.
+  warriorStore.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(8): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(9): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(10): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(11): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(21): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(22): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(24): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(155): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(224): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(449): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(483): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(518): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(556): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(576): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warriorstore.cpp(596): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  WarScene.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(52): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(123): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(215): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(217): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(224): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(240): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(242): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(249): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(271): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(273): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(299): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\고동원\desktop\github\gosang\한달포..폴\warscene.cpp(301): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Window.cpp
+c:\users\고동원\desktop\github\gosang\한달포..폴\window.cpp(135): warning C4065: switch문에 'default'가 있으나 'case' 레이블이 없습니다.
+  winMain.cpp
+  코드를 생성하고 있습니다...
+  API_FrameWork.vcxproj -> C:\Users\고동원\Desktop\GitHub\gosang\한달포..폴\Debug\API_FrameWork.exe
