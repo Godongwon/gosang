@@ -12,10 +12,11 @@ enum CTRL
 	CTRL_INIT,//그리기도구
 	CTRL_SAVE,
 	CTRL_LOAD,//저장 불러오기 도구
-	CTRL_OBJECT,
+	CTRL_EXIT,
 	CTRL_MOUNTIN,
 	CTRL_GROUND,
 	CTRL_WATER,//속성
+	CTRL_TREE,
 	CTRL_WARMAP,	//전투 맵
 	CTRL_TWONMAP,	//마을
 	CTRL_ALL,	//all
@@ -41,10 +42,11 @@ private:
 	HWND _btnSave;
 	HWND _btnLoad;
 	//타일 속성 정하기 
-	HWND _btnObject;
+	HWND _btnEXIT;
 	HWND _btnMountin;
 	HWND _btnGround;
 	HWND _btnWater;
+	HWND _btnTree;
 	
 	
 	HWND _selectWarMap;

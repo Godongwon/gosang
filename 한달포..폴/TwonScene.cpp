@@ -16,9 +16,11 @@ HRESULT TwonScene::init()
 {
 	
 	//¸Ê Å¸ÀÏ ÀÌ¹ÌÁö
-	IMAGEMANAGER->addFrameImage("Ground", "resource/image/¸ÊÅø/maptoolGround.bmp", 320, 320, 5, 10, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Mountin", "resource/image/¸ÊÅø/maptoolMountin.bmp", 320, 256, 5, 8, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Water", "resource/image/¸ÊÅø/maptoolWater.bmp", 320, 192, 5, 6, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Ground", "resource/image/¸ÊÅø/maptoolGround.bmp", 0, 0, 320, 320, 5, 10, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Mountin", "resource/image/¸ÊÅø/maptoolMountin.bmp", 0, 0, 320, 256, 5, 8, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Water", "resource/image/¸ÊÅø/maptoolWater.bmp", 0, 0, 320, 192, 5, 6, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Tree", "resource/image/¸ÊÅø/³ª¹«/treeFrmae.bmp", 0, 0, 960, 128, 6, 1, true, RGB(255, 0, 255));
+
 	//·Îµå
 	townload();
 	//===========================================================================================================================================================
@@ -80,6 +82,10 @@ void TwonScene::update()
 		_textCount++;
 	}
 	PLAYER->update();
+	if (PLAYER->get_interFace()->get_isInoption())
+	{
+		PLAYER->get_interFace()->optionWindow();
+	}
 
 
 }
@@ -91,6 +97,7 @@ void TwonScene::render()
 	{
 		PLAYER->render();
 		_store->render();
+		_store->iteminfo_render();
 	}
 	else if (_warriorStore->get_isOpenWarriorStore())
 	{
@@ -113,6 +120,10 @@ void TwonScene::render()
 	{
 		istextOut = false;
 		_textCount = 0;
+	}
+	if (PLAYER->get_interFace()->get_isInoption())
+	{
+		PLAYER->get_interFace()->optionWindow_render();
 	}
 
 }
@@ -160,6 +171,15 @@ void TwonScene::Draw()
 								_tileMap[i][j].top - _tileMap[i][j].height * z,
 								_tileMap[i][j].tilePoint[z].x,
 								_tileMap[i][j].tilePoint[z].y);
+							break;
+						case 3:
+
+							IMAGEMANAGER->frameRender("Tree", getMemDC(),
+								_tileMap[i][j].left - 64,
+								_tileMap[i][j].top - _tileMap[i][j].height*z,
+								_tileMap[i][j].tilePoint[z].x,
+								_tileMap[i][j].tilePoint[z].y);
+
 							break;
 						}
 					}

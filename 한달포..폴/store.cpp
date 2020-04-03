@@ -5,13 +5,13 @@
 void store::add_itemImg()
 {
 	IMAGEMANAGER->addImage("도끼", "resource/image/상점/weapon/weapon.bmp",			 64*1.5, 32*1.5);
-	IMAGEMANAGER->addImage("낫", "resource/image/상점/weapon/weapon2.bmp",			 64*1.5, 32*1.5);
+	IMAGEMANAGER->addImage("정글칼", "resource/image/상점/weapon/weapon2.bmp",			 64*1.5, 32*1.5);
 	IMAGEMANAGER->addImage("글라디우스", "resource/image/상점/weapon/weapon3.bmp",	 64*1.5, 32*1.5);
 	IMAGEMANAGER->addImage("장군검", "resource/image/상점/weapon/weapon4.bmp",		 64*1.5, 32*1.5);
 	IMAGEMANAGER->addImage("용검", "resource/image/상점/weapon/weapon5.bmp",			 64*1.5, 32*1.5);
 	
 	IMAGEMANAGER->addImage("우주복", "resource/image/상점/armer/armer1.bmp",		64*1.5, 32*1.5);
-	IMAGEMANAGER->addImage("정장", "resource/image/상점/armer/armer2.bmp",		64*1.5, 32*1.5);
+	IMAGEMANAGER->addImage("댄스복", "resource/image/상점/armer/armer2.bmp",		64*1.5, 32*1.5);
 	IMAGEMANAGER->addImage("장군옷", "resource/image/상점/armer/armer3.bmp",		64*1.5, 32*1.5);
 	IMAGEMANAGER->addImage("한복", "resource/image/상점/armer/armer4.bmp",		64*1.5, 32*1.5);
 	IMAGEMANAGER->addImage("일본갑옷", "resource/image/상점/armer/armer5.bmp",	64*1.5, 32*1.5);
@@ -19,7 +19,7 @@ void store::add_itemImg()
 void store::release_itemImg()
 {
 	IMAGEMANAGER->deleteImage("도끼");
-	IMAGEMANAGER->deleteImage("낫");
+	IMAGEMANAGER->deleteImage("정글칼");
 	IMAGEMANAGER->deleteImage("글라디우스");
 	IMAGEMANAGER->deleteImage("장군검");
 	IMAGEMANAGER->deleteImage("용검");
@@ -28,7 +28,7 @@ void store::add_vItem(string name, STORE_KIND kind, int effect,int itemnum,int p
 {
 	STORE_ITEM item;
 	ZeroMemory(&item, sizeof(STORE_ITEM));
-	//item.name = name;
+	item.name = (string)name;
 	item.Img = IMAGEMANAGER->findImage(name);
 	item.rc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 64,32);
 	item.kind = kind;
@@ -86,6 +86,8 @@ void store::Button_PushRender(VI_ITEM item)
 	{
 		if(item->kind== STOREKIND_WEAPON)
 		{
+			_storeButton[1].isPush=false;
+			_storeButton[2].isPush=false;
 			vi_item->itemDisplayImg->frameRender(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top, vi_item->itemDisplayImg->getFrameX(),0);
 			vi_item->Img->render(getMemDC(), vi_item->rc.left, vi_item->rc.top);
 		}
@@ -95,6 +97,8 @@ void store::Button_PushRender(VI_ITEM item)
 	{
 		if (item->kind == STOREKIND_ARMER)
 		{
+			_storeButton[0].isPush = false;
+			_storeButton[2].isPush = false;
 			vi_item->itemDisplayImg->frameRender(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top, vi_item->itemDisplayImg->getFrameX(), 0);
 			vi_item->Img->render(getMemDC(), vi_item->rc.left, vi_item->rc.top);
 		}
@@ -103,6 +107,8 @@ void store::Button_PushRender(VI_ITEM item)
 	{
 		if (item->kind == STOREKIND_POTION)
 		{
+			_storeButton[0].isPush = false;
+			_storeButton[1].isPush = false;
 			vi_item->itemDisplayImg->frameRender(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top, vi_item->itemDisplayImg->getFrameX(), 0);
 			vi_item->Img->render(getMemDC(), vi_item->rc.left, vi_item->rc.top);
 		}
@@ -113,19 +119,9 @@ void store::Not_select(bool is)
 	if (is)
 	{
 		NotSelectCount++;
-	}
-	if (is&&NotSelectCount < 180&& NotSelectCount!=0)
-	{
-		FontTextOut(getMemDC(), PLAYER->Player_getFocusX(), PLAYER->Player_getFocusY(), "선택한 아이템이 없습니다!!", 20, "HY견고딕", RGB(254, 254, 254));
-	}
-	if(NotSelectCount>181 && NotSelectCount != 0)
-	{
-		is = false;
-		_storeButton[3].isPush = false;
-
-		NotSelectCount = 0;
-	}
 	
+	}
+
 }
 //===============================================================================================================================================
 store::store(){}
@@ -139,7 +135,8 @@ HRESULT store::init()
 	isNotSelect = false;
 	NotSelectCount = 0;
 	IMAGEMANAGER->addFrameImage("Store", "resource/image/상점/상점.bmp", 288 * 2.5, 82 * 2.5, 2, 1);
-	IMAGEMANAGER->addImage("InStore", "resource/image/상점/인스토어창.bmp", 714, 473);
+	IMAGEMANAGER->addImage("InStore", "resource/image/상점/인스토어창2.bmp", 714, 473);
+	IMAGEMANAGER->addImage("itemInfo", "resource/image/상점/아이템인포.bmp", 100,100);
 	//IMAGEMANAGER->addImage("아이템창","resource/image/상점/아이템창2.bmp", 118*1.5, 36*1.5);
 	IMAGEMANAGER->addFrameImage("아이템창","resource/image/상점/아이템창3.bmp", 236*1.5, 36*1.5,2,1);
 
@@ -155,17 +152,20 @@ HRESULT store::init()
 	storeInfo.storeRC = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, storeInfo.storeImg->getFrameWidth(), storeInfo.storeImg->getFrameHeight());
 	storeInfo.InstoreImg = IMAGEMANAGER->findImage("InStore");
 	
-	add_vItem("도끼", STOREKIND_WEAPON, 10,1,2000);
-	add_vItem("낫", STOREKIND_WEAPON, 15,2,1000);
-	add_vItem("글라디우스", STOREKIND_WEAPON, 20,3,3000);
-	add_vItem("장군검", STOREKIND_WEAPON, 25,4,4000);
-	add_vItem("용검", STOREKIND_WEAPON, 30,5,5000);
+	iteminfoimg = IMAGEMANAGER->findImage("itemInfo");
 	
-	add_vItem("우주복",STOREKIND_ARMER, 10,6,3000);
-	add_vItem("정장",STOREKIND_ARMER, 15,7,1000);
-	add_vItem("장군옷", STOREKIND_ARMER, 20,8,5000);
-	add_vItem("한복", STOREKIND_ARMER, 25,9,2000);
-	add_vItem("일본갑옷", STOREKIND_ARMER, 30,10,4000);
+
+	add_vItem("도끼", STOREKIND_WEAPON, 20,1,2000);
+	add_vItem("정글칼", STOREKIND_WEAPON, 10,2,1000);
+	add_vItem("글라디우스", STOREKIND_WEAPON, 30,3,3000);
+	add_vItem("장군검", STOREKIND_WEAPON, 35,4,4000);
+	add_vItem("용검", STOREKIND_WEAPON, 40,5,5000);
+	
+	add_vItem("우주복",STOREKIND_ARMER, 20,6,3000);
+	add_vItem("댄스복",STOREKIND_ARMER, 10,7,1000);
+	add_vItem("장군옷", STOREKIND_ARMER,30  ,8,5000);
+	add_vItem("한복", STOREKIND_ARMER, 15,9,2000);
+	add_vItem("일본갑옷", STOREKIND_ARMER, 25,10,4000);
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -207,6 +207,8 @@ void store::update()
 	{
 		storeInfo.InstoreRC = RectMakeCenter(PLAYER->Player_getFocusX(), PLAYER->Player_getFocusY(), storeInfo.InstoreImg->getWidth(), storeInfo.InstoreImg->getHeight());
 		add_Buttoninit();
+		
+
 		if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 		{
 			for (int i = 0; i < 5; i++)
@@ -264,11 +266,14 @@ void store::update()
 
 void store::render()
 {
+	
 	storeInfo.storeImg->frameRender(getMemDC(), storeInfo.storeRC.left, storeInfo.storeRC.top, storeInfo.storeImg->getFrameX(), 0);
+	
 	if (isOpenStore)
 	{
+		
 		storeInfo.InstoreImg->render(getMemDC(), storeInfo.InstoreRC.left, storeInfo.InstoreRC.top);
-		for (int i = 0; i < 5; i++)
+		for (int i = 3; i < 5; i++)
 		{
 			Button_Push(i);
 			_storeButton[i].storeButtonImg->frameRender(getMemDC(), _storeButton[i].storeButtonRC.left, _storeButton[i].storeButtonRC.top, _storeButton[i].storeButtonImg->getFrameX(),0);
@@ -276,12 +281,50 @@ void store::render()
 		for (vi_item = v_item.begin(); vi_item != v_item.end(); ++vi_item)
 		{
 			select_item(vi_item);
-			Button_PushRender(vi_item);
-
+			vi_item->itemDisplayImg->frameRender(getMemDC(), vi_item->itemDisplayRC.left, vi_item->itemDisplayRC.top, vi_item->itemDisplayImg->getFrameX(), 0);
+			vi_item->Img->render(getMemDC(), vi_item->rc.left, vi_item->rc.top);
 		}
-		Not_select(isNotSelect);
-
+	
+		if (NotSelectCount > 60)
+		{
+			isNotSelect = false;
+			_storeButton[3].isPush = false;
+			NotSelectCount = 0;
+		}
+		else if(_storeButton[3].isPush&&NotSelectCount<60)
+		{
+			FontTextOut(getMemDC(), _storeButton[3].storeButtonRC.right+10, _storeButton[3].storeButtonRC.top, "선택한 아이템이 없습니다!!", 20, "HY견고딕", RGB(254, 254, 254));
+		}
 	}
+}
+
+void store::iteminfo_render()
+{
+	for (vi_item = v_item.begin(); vi_item != v_item.end(); ++vi_item)
+	{
+		if (PtInRect(&vi_item->itemDisplayRC, m_ptMouse))
+		{
+			iteminfoRC = RectMake(m_ptMouse.x, m_ptMouse.y, 100, 100);
+			iteminfoimg->alphaRender(getMemDC(), iteminfoRC.left, iteminfoRC.top,150);
+			FontTextOut(getMemDC(), iteminfoRC.left + 20, iteminfoRC.top + 4, vi_item->name.c_str(), 15, "HY견고딕", RGB(254, 254, 254));
+			char effect[128];
+			if (vi_item->kind == STOREKIND_WEAPON)
+			{
+				sprintf_s(effect, "공격력  + %d", vi_item->effect);
+			}
+			else if (vi_item->kind == STOREKIND_ARMER)
+			{
+				sprintf_s(effect, "방어력  + %d", vi_item->effect);
+			}
+			FontTextOut(getMemDC(), iteminfoRC.left + 2, iteminfoRC.top + 34, effect, 15, "HY견고딕", RGB(254, 254, 254));
+			char price[128];
+			sprintf_s(price, "가격 : %d", vi_item->price);
+			FontTextOut(getMemDC(), iteminfoRC.left + 2, iteminfoRC.top + 64, price, 15, "HY견고딕", RGB(254, 254, 254));
+		}
+	}
+
+	
+
 }
 
 void store::set_storeXY(int x, int y)
@@ -323,9 +366,11 @@ void store::buy_item()
 				{
 					isNotSelect = true;
 				}
+
 			}
 
 		}
+		Not_select(isNotSelect);
 	}
 
 }

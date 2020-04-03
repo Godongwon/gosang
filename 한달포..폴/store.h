@@ -24,6 +24,8 @@ private:
 
 	STORE_BUTTON _storeButton[5];
 
+	image* iteminfoimg;
+	RECT iteminfoRC;
 
 	typedef vector<STORE_ITEM> V_ITEM;
 	typedef vector<STORE_ITEM>::iterator VI_ITEM;
@@ -53,7 +55,7 @@ public:
 	void update();
 	void render();
 
-
+	void iteminfo_render();
 	bool get_isOpenStore() {return isOpenStore;}
 	void set_storeXY(int x, int y);
 	void select_item(VI_ITEM item);

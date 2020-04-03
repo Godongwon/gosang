@@ -110,6 +110,7 @@ public:
 	bool set_isInWarriorinven(bool is) { _isInWarriorInven = is; }
 	//bool : ture +  false -
 	void set_PlayerWarrior(WARRIOR_NUM warrior, int num, bool plus);
+	
 
 	//아이템장착
 	RECT get_ItemRC(int playerWarrior, int warrioritemNum)

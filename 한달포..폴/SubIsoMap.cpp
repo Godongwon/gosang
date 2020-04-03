@@ -13,6 +13,7 @@ SubIsoMap::~SubIsoMap()
 
 HRESULT SubIsoMap::init()
 {
+	
 	for (int i = 0; i < TILE_SIZE_X; i++)
 	{
 		for (int j = 0; j < TILE_SIZE_Y; j++)
@@ -23,6 +24,8 @@ HRESULT SubIsoMap::init()
 				SUBWINSIZEX / TILE_SIZE_X, 300 / TILE_SIZE_Y);
 		}
 	}
+	tree = RectMake(0, 300, 160, 128);
+	treeNum = 0;
 	int currentTile = 0;
 
 	isDebug = false;
@@ -37,23 +40,56 @@ void SubIsoMap::release()
 
 void SubIsoMap::update()
 {
-	if (SUBWIN->getIsActive() && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	if (SUBWIN->getFrameIndex() != 3)
 	{
-		for (int i = 0; i < TILE_SIZE_Y; i++)
+		if (SUBWIN->getIsActive() && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 		{
-			for (int j = 0; j < TILE_SIZE_X; j++)
+			
+			for (int i = 0; i < TILE_SIZE_Y; i++)
 			{
-				if (PtInRect(&rc[j][i], SUBWIN->getSubWinMousePos()))
+				for (int j = 0; j < TILE_SIZE_X; j++)
 				{
-					SUBWIN->setFramePoint(PointMake(j, i));
+					if (PtInRect(&rc[j][i], SUBWIN->getSubWinMousePos()))
+					{
+						SUBWIN->setFramePoint(PointMake(j, i));
+					}
 				}
 			}
 		}
+			
+	}
+	else
+	{
+		if (SUBWIN->getIsActive()&&KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			if (treeNum < 5)
+			{
+				treeNum += 1;
+			}
+		}
+		else if (SUBWIN->getIsActive()&&KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			if (treeNum >0)
+			{
+				treeNum -= 1;
+			}
+		}
+
+		if (SUBWIN->getIsActive() && KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+		{
+			if (PtInRect(&tree, SUBWIN->getSubWinMousePos()))
+			{
+				SUBWIN->setFramePoint(PointMake(treeNum,0));
+			}
+		}
+
 	}
 	if (KEYMANAGER->isOnceKeyDown(VK_SHIFT))
 	{
 		isDebug = !isDebug;
 	}
+	
+
 }
 
 void SubIsoMap::render(HDC hdc)
@@ -64,7 +100,15 @@ void SubIsoMap::render(HDC hdc)
 		{
 			for (int j = 0; j < TILE_SIZE_Y; j++)
 			{
-				RectangleMake(hdc, rc[i][j]);
+				if (SUBWIN->getFrameIndex() != 3)
+				{
+					RectangleMake(hdc, rc[i][j]);
+				}
+				else
+				{
+					RectangleMake(hdc, tree);
+
+				}
 			}
 		}
 	}
@@ -99,6 +143,10 @@ void SubIsoMap::render(HDC hdc)
 			}
 		}
 		
+		break;
+	case 3:
+		
+		IMAGEMANAGER->findImage("Tree")->frameRender(hdc, tree.left, tree.top, treeNum, 0);
 		break;
 
 		

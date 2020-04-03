@@ -55,9 +55,6 @@
     <Filter Include="pch">
       <UniqueIdentifier>{4f44fb4a-bc77-4a5c-afbe-99f594638bc0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maptool">
-      <UniqueIdentifier>{406c98aa-d38b-455e-abf6-6efe63b0d970}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\플레이어">
       <UniqueIdentifier>{fbe39c07-b5a6-46d6-91f8-4ce0e62c4c1a}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,9 @@
     </Filter>
     <Filter Include="UI\용병화면">
       <UniqueIdentifier>{63a370b7-435a-4563-9d3b-9d06e57d6927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base\애니메이션\Maptool">
+      <UniqueIdentifier>{406c98aa-d38b-455e-abf6-6efe63b0d970}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -172,19 +172,19 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="IsoTile.h">
-      <Filter>Maptool</Filter>
+      <Filter>base\애니메이션\Maptool</Filter>
     </ClInclude>
     <ClInclude Include="IsoMap.h">
-      <Filter>Maptool</Filter>
+      <Filter>base\애니메이션\Maptool</Filter>
     </ClInclude>
     <ClInclude Include="SubIsoMap.h">
-      <Filter>Maptool</Filter>
+      <Filter>base\애니메이션\Maptool</Filter>
     </ClInclude>
     <ClInclude Include="Maptool.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Maptool</Filter>
+      <Filter>base\애니메이션\Maptool</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Object\플레이어</Filter>
@@ -306,13 +306,13 @@
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="IsoMap.cpp">
-      <Filter>Maptool</Filter>
+      <Filter>base\애니메이션\Maptool</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Maptool</Filter>
+      <Filter>base\애니메이션\Maptool</Filter>
     </ClCompile>
     <ClCompile Include="SubIsoMap.cpp">
-      <Filter>Maptool</Filter>
+      <Filter>base\애니메이션\Maptool</Filter>
     </ClCompile>
     <ClCompile Include="Maptool.cpp">
       <Filter>Scene</Filter>

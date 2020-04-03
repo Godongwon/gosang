@@ -361,23 +361,27 @@ void Player::update()
 	_focusPlayerimgY = _playerInfo.playerimgRC.bottom - (_playerInfo.playerimgRC.bottom - _playerInfo.playerimgRC.top) / 2;
 	_focusPlayerX = _focusPlayerimgX;
 	_focusPlayerY = _focusPlayerimgY;
-	CameraMove();
-	PlayerPointMake();
-	PlayerMove();
-	In_inven();
-	Mounting_item();
-	In_warriorInven();
-	if (v_playerWarrior.size() != 0)
+	if (!_interface->get_isInoption())
 	{
-		Remodeling_item();
+		CameraMove();
+		PlayerPointMake();
+		PlayerMove();
+		In_inven();
+		Mounting_item();
+		In_warriorInven();
+		if (v_playerWarrior.size() != 0)
+		{
+			Remodeling_item();
+		}
+		_interface->update();
+		_playerInfo.playerRC = RectMakeCenter(_focusPlayerimgX, _focusPlayerimgY, 40, 70);
+		_playerInfo.playerAni->frameUpdate(_playerInfo.frameSpeed);
+		if (KEYMANAGER->isOnceKeyDown(VK_F1))
+		{
+			_isDebug = !_isDebug;
+		}
 	}
-	_interface->update();
-	_playerInfo.playerRC = RectMakeCenter(_focusPlayerimgX, _focusPlayerimgY, 40, 70);
-	_playerInfo.playerAni->frameUpdate(_playerInfo.frameSpeed);
-	if (KEYMANAGER->isOnceKeyDown(VK_F1))
-	{
-		_isDebug = !_isDebug;
-	}
+
 }
 void Player::render()
 {

@@ -84,8 +84,14 @@ void IsoMap::update()
 				isoX = isoX + 1;
 				break;
 			}
-			setMap(isoX,isoY, false);
-
+			if (SUBWIN->getFrameIndex() < 3)
+			{
+				setMap(isoX, isoY, false);
+			}
+			else if(SUBWIN->getFrameIndex()==3)
+			{
+				setMap(isoX, isoY, true);
+			}
 			_center = corner;
 			_isoX = isoX;
 			_isoY = isoY;
@@ -99,7 +105,7 @@ void IsoMap::render()
 {
 	
 	sprintf_s(_tileNum, "isoX : %d | isoY : %d | corner : %d | %d : %d|", _isoX, _isoY, _center,SUBWIN->getFramePoint().x, SUBWIN->getFramePoint().y);
-	TextOut(CAMERAMANAGER->getCameraDC(), WINSIZEX/2-100, 20, _tileNum, strlen(_tileNum));
+	FontTextOut(CAMERAMANAGER->getCameraDC(), WINSIZEX/2-100, 20, _tileNum,20,"°íµñ",RGB(254,254,254));
 	
 	
 	DrawTileMap();
@@ -119,13 +125,7 @@ void IsoMap::render()
 
 						if (_tileMap[i][j].tileKind[z] == TILEKIND_NONE)
 						{
-
-							//Rectangle(getMemDC(), _tileMap[i][j].AstarRC.left, _tileMap[i][j].AstarRC.top, _tileMap[i][j].AstarRC.right, _tileMap[i][j].AstarRC.bottom);
-							LineMake(getMemDC(), _tileMap[i][j].p[k - 1], _tileMap[i][j].p[k],RGB(255,255,255));
-							//sprintf_s(_tileNum, "(%d,%d)", i, j);
-							//TextOut(getMemDC(),
-							//	_tileMap[i][j].left + RADIUS_WIDTH / 2 + 8,
-							//	_tileMap[i][j].top + RADIUS_HEIGHT / 2 + 5, _tileNum, strlen(_tileNum));
+							LineMake(getMemDC(), _tileMap[i][j].p[k - 1], _tileMap[i][j].p[k],RGB(255,255,255));					
 						}
 						
 					}
@@ -184,6 +184,15 @@ void IsoMap::DrawTileMap()
 							_tileMap[i][j].top - _tileMap[i][j].height * z,
 							_tileMap[i][j].tilePoint[z].x,
 							_tileMap[i][j].tilePoint[z].y);
+						break;
+					case 3:
+						
+							IMAGEMANAGER->frameRender("Tree", getMemDC(),
+								_tileMap[i][j].left - 32,
+								_tileMap[i][j].top - _tileMap[i][j].height * z,
+								_tileMap[i][j].tilePoint[z].x,
+								_tileMap[i][j].tilePoint[z].y);
+						
 						break;
 					}
 				}
@@ -352,6 +361,9 @@ void IsoMap::setMap(int isoX, int isoY, bool isAdd)
 	case 2:
 		imageFrame = SUBWIN->getFramePoint();
 		break;
+	case 3:
+		imageFrame = SUBWIN->getFramePoint();
+		break;
 	}
 	_currentCTRL = SUBWIN->getCTRL();
 	switch (_currentCTRL)
@@ -359,12 +371,18 @@ void IsoMap::setMap(int isoX, int isoY, bool isAdd)
 	case CTRL_DRAW:
 		if (isAdd)
 		{
-			if (!kindSelect(imageFrame.x, imageFrame.y) == TILEKIND_NONE && _tileMap[isoX][isoY].index == -1) break;
-			_tileMap[isoX][isoY].index++;
-			if (_tileMap[isoX][isoY].index >= TILE_MAX) _tileMap[isoX][isoY].index = TILE_MAX - 1;
-			_tileMap[isoX][isoY].tileNum[_tileMap[isoX][isoY].index] = index;
-			_tileMap[isoX][isoY].tileKind[_tileMap[isoX][isoY].index] = kindSelect(imageFrame.x, imageFrame.y);
-			_tileMap[isoX][isoY].tilePoint[_tileMap[isoX][isoY].index] = imageFrame;
+			if (_tileMap[isoX][isoY].index == -1)
+			{ }
+			else
+			{
+
+				_tileMap[isoX][isoY].index+=2;
+				if (_tileMap[isoX][isoY].index >= TILE_MAX) _tileMap[isoX][isoY].index = TILE_MAX - 1;
+				_tileMap[isoX][isoY].tileNum[_tileMap[isoX][isoY].index] = index;
+				_tileMap[isoX][isoY].tileKind[_tileMap[isoX][isoY].index] = kindSelect(imageFrame.x,imageFrame.y);
+				_tileMap[isoX][isoY].tilePoint[_tileMap[isoX][isoY].index] = imageFrame;
+			}
+			
 		}
 		else
 		{
@@ -382,13 +400,12 @@ void IsoMap::setMap(int isoX, int isoY, bool isAdd)
 				_tileMap[isoX][isoY].tileKind[_tileMap[isoX][isoY].index] = kindSelect(imageFrame.x, imageFrame.y);
 				_tileMap[isoX][isoY].tilePoint[_tileMap[isoX][isoY].index] = imageFrame;
 			}
-
 		}
 		break;
 	case CTRL_ERASER:
 		if (_tileMap[isoX][isoY].index > -1)
 		{
-			_tileMap[isoX][isoY].index--;
+			_tileMap[isoX][isoY].index=-1;
 		}
 		break;
 	
@@ -411,6 +428,10 @@ TILEKIND IsoMap::kindSelect(int frameX, int frameY)
 	if (SUBWIN->getFrameIndex() == 2)
 	{
 		return TILEKIND_SPEEDDOWN;
+	}
+	if (SUBWIN->getFrameIndex() == 3)
+	{
+		return TILEKIND_TREE;
 	}
 }
 

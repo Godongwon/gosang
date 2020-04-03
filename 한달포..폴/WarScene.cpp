@@ -16,9 +16,12 @@ WarScene::~WarScene()
 HRESULT WarScene::init()
 {
 
-	IMAGEMANAGER->addFrameImage("Ground", "resource/image/¸ÊÅø/maptoolGround.bmp", 320, 320, 5, 10, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Mountin", "resource/image/¸ÊÅø/maptoolMountin.bmp", 320, 256, 5, 8, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Water", "resource/image/¸ÊÅø/maptoolWater.bmp", 320, 192, 5, 6, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Ground", "resource/image/¸ÊÅø/maptoolGround.bmp", 0, 0, 320, 320, 5, 10, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Mountin", "resource/image/¸ÊÅø/maptoolMountin.bmp", 0, 0, 320, 256, 5, 8, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Water", "resource/image/¸ÊÅø/maptoolWater.bmp", 0, 0, 320, 192, 5, 6, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Tree", "resource/image/¸ÊÅø/³ª¹«/treeFrmae.bmp", 0, 0, 960, 128, 6, 1, true, RGB(255, 0, 255));
+
+
 	warload();
 	//===========================================================================================================================================================
 	_monsterChild = new monster;
@@ -39,7 +42,7 @@ HRESULT WarScene::init()
 	}
 	_isplayerWin = false;
 	_isMonsterWin = false;
-
+	PLAYER->get_interFace()->set_isInoption(false);
 	IMAGEMANAGER->addImage("WarSceneWindow", "resource/image/warScene/»óÅÂÃ¢.bmp", 185*2, 45*2);
 	IMAGEMANAGER->addFrameImage("WarSceneButton", "resource/image/warScene/È®ÀÎ¹öÆ°.bmp",300,30,3,1);
 
@@ -188,6 +191,15 @@ void WarScene::Draw()
 								_tileMap[i][j].top - _tileMap[i][j].height * z,
 								_tileMap[i][j].tilePoint[z].x,
 								_tileMap[i][j].tilePoint[z].y);
+							break;
+						case 3:
+
+							IMAGEMANAGER->frameRender("Tree", getMemDC(),
+								_tileMap[i][j].left -128,
+								_tileMap[i][j].top - _tileMap[i][j].height*z,
+								_tileMap[i][j].tilePoint[z].x,
+								_tileMap[i][j].tilePoint[z].y);
+
 							break;
 						}
 					}

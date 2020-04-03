@@ -20,13 +20,14 @@
 #define TILE_SIZE_Y 10
 
 
-#define TILE_MAX 10
+#define TILE_MAX 3
 
 enum TILEKIND
 {
 	TILEKIND_OBJECT = 0,
 	TILEKIND_NOMAL,
 	TILEKIND_SPEEDDOWN,
+	TILEKIND_TREE,
 	TILEKIND_NONE
 };
 
@@ -44,9 +45,6 @@ struct tagTILE
 	POINT tilePoint[TILE_MAX];
 	int height;
 
-	//astar
-	//ASTAR _astar;
-	//RECT AstarRC;
 	COLORREF color;
 	bool walkable;  //지나갈수 있는지 여부
 	bool liston;	//openlist에 추가

@@ -9,7 +9,7 @@ enum STORE_KIND
 struct STORE_ITEM
 {
 	int itemnum;
-	//string name;
+	string name;
 	STORE_KIND kind;
 	image* Img;
 	RECT rc;

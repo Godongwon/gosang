@@ -18,6 +18,7 @@ HRESULT Maptool::init()
 	IMAGEMANAGER->addFrameImage("Ground", "resource/image/¸ÊÅø/maptoolGround.bmp", 0, 0, 320, 320, 5, 10, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Mountin", "resource/image/¸ÊÅø/maptoolMountin.bmp", 0, 0, 320, 256, 5, 8, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Water", "resource/image/¸ÊÅø/maptoolWater.bmp", 0, 0, 320, 192, 5, 6, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Tree", "resource/image/¸ÊÅø/³ª¹«/treeFrmae.bmp", 0, 0, 960,128,6,1, true, RGB(255, 0, 255));
 
 	
 	

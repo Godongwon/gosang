@@ -33,15 +33,16 @@ void Window::init()
 	_btnInit=CreateWindow("button","Init", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,			tempX, 60, 100, 20, hWnd, HMENU(2), m_hInstance, NULL);
 	_btnSave=CreateWindow("button","SAVE", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,			tempX+115, 0, 100, 20, hWnd, HMENU(3), m_hInstance, NULL);
 	_btnLoad=CreateWindow("button","LOAD", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,			tempX+115, 30, 100, 20, hWnd, HMENU(4), m_hInstance, NULL);
-	_btnObject=CreateWindow("button","EXIT", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,			SUBWINSIZEX / 2 - 50, SUBWINSIZEY - 50,100,20, hWnd, HMENU(5), m_hInstance, NULL);
+	_btnEXIT =CreateWindow("button","EXIT", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,			SUBWINSIZEX / 2 - 50, SUBWINSIZEY - 50,100,20, hWnd, HMENU(5), m_hInstance, NULL);
 	_btnMountin= CreateWindow("button", "Mountin", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,	tempX, 135, 70, 20, hWnd, HMENU(6), m_hInstance, NULL);
 	_btnGround= CreateWindow("button", "Ground", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,		tempX, 160, 70, 20, hWnd, HMENU(7), m_hInstance, NULL);
 	_btnWater= CreateWindow("button", "Water", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,		tempX +80, 160, 70, 20, hWnd, HMENU(8), m_hInstance, NULL);
+	_btnTree= CreateWindow("button", "Tree", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,			tempX +80, 135, 70, 20, hWnd, HMENU(9), m_hInstance, NULL);
 	
-	_selectWarMap= CreateWindow("button", "ÀüÅõ¸Ê", WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON, tempX, 100, 100, 30, hWnd, HMENU(9), m_hInstance, NULL);
-	_selectTwonMap= CreateWindow("button", "¸¶À»¸Ê", WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON, tempX+115, 100, 100, 30, hWnd, HMENU(10), m_hInstance, NULL);
+	_selectWarMap= CreateWindow("button", "ÀüÅõ¸Ê", WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON, tempX, 100, 100, 30, hWnd, HMENU(10), m_hInstance, NULL);
+	_selectTwonMap= CreateWindow("button", "¸¶À»¸Ê", WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON, tempX+115, 100, 100, 30, hWnd, HMENU(11), m_hInstance, NULL);
 	
-	_btnAll= CreateWindow("button", "All", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,		tempX +115, 60, 100, 20, hWnd, HMENU(11), m_hInstance, NULL);
+	_btnAll= CreateWindow("button", "All", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,		tempX +115, 60, 100, 20, hWnd, HMENU(12), m_hInstance, NULL);
 
 	clickFrame = { 0,0 };
 	_clickIndex = 0;
@@ -111,15 +112,17 @@ LRESULT Window::WndLogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			case CTRL_LOAD:
 				SUBWIN->getIsoMap()->Load();
 				break;
-			case CTRL_OBJECT:
+			case CTRL_EXIT:
 				DestroyWindow(hWnd);
 				SCENEMANAGER->changeScene("StartScene");
 				break;
 			case CTRL_MOUNTIN:
 			case CTRL_GROUND:
 			case CTRL_WATER:
+			case CTRL_TREE:
 				SUBWIN->setFrameIndex(LOWORD(wParam) - 6);
 				break;
+
 			case CTRL_WARMAP:
 			case CTRL_TWONMAP:
 				_currentCTRL = (CTRL)(LOWORD(wParam));
