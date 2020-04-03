@@ -39,6 +39,7 @@ void mainGame::render(/*HDC hdc*/)
 	//=====================================================
 	SCENEMANAGER->render();
 	
+	if(KEYMANAGER->isToggleKey('T'))
 	TIMEMANAGER->render(CAMERAMANAGER->getCameraDC());
 	//=====================================================
 	//백버퍼의 내용을 HDC에 그린다.(지우지마!!)

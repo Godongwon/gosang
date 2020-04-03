@@ -201,7 +201,7 @@ void Player::In_inven()
 	}
 	if (_isIninven)
 	{
-		Inven->set_invenRC(_focusPlayerX + 350, _focusPlayerY - 100);
+		Inven->set_invenRC(_focusPlayerX + 175, _focusPlayerY - 100);
 		Inven->update();
 
 	}
@@ -214,7 +214,7 @@ void Player::In_warriorInven()
 	}
 	if (_isInWarriorInven)
 	{
-		WInven->set_warriorInvenRC(_focusPlayerX , _focusPlayerY - 100);
+		WInven->set_warriorInvenRC(_focusPlayerX-175 , _focusPlayerY - 100);
 		WInven->update();
 
 	}

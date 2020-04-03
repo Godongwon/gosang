@@ -68,6 +68,15 @@ void interFace::update()
 			}
 		}
 	}
+	else if(KEYMANAGER->isOnceKeyDown(VK_ESCAPE))
+	{
+		isInoption = true;
+		for (int i = 0; i < 2; i++)
+		{
+			_optionButton[i].isPush = false;
+		}
+
+	}
 	if (_warriorDisplay->get_vDisplay().size() != 0)
 	{
 		for (int i = 0; i < _warriorDisplay->get_vDisplay().size(); i++)

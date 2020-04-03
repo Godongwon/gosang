@@ -237,29 +237,29 @@ void WarScene::Collition()
 		}
 	}
 
-	for (int j = 0; j < _battle->get_vBattlePlayerWarrior().size(); j++)
-	{
-		for (int i = 0; i < _monsterChild->get_vMonsterChild().size(); i++)
-		{
-			RECT monster = _monsterChild->get_vMonsterChild()[i].monsterChildRC;
-			RECT warrior = _battle->get_vBattlePlayerWarrior()[j].inGamewarroirRC;
-			RECT temp;
-			if (IntersectRect(&temp, &monster, &warrior))
-			{
-				if (getDistance(_battle->get_vBattlePlayerWarrior()[j].x, _battle->get_vBattlePlayerWarrior()[j].y, _monsterChild->get_vMonsterChild()[i].x, _monsterChild->get_vMonsterChild()[i].y) < 100)
-				{
-					_battle->set_PlayerWarriorAtkmod(j, true);
-					_monsterChild->set_monsterAtkMod(i, true);
-				}
-				else
-				{
-					_monsterChild->set_monsterAtkMod(i, false);
-					_battle->set_PlayerWarriorAtkmod(j, false);
-				}
-			}
-
-		}
-	}
+	//for (int j = 0; j < _battle->get_vBattlePlayerWarrior().size(); j++)
+	//{
+	//	for (int i = 0; i < _monsterChild->get_vMonsterChild().size(); i++)
+	//	{
+	//		RECT monster = _monsterChild->get_vMonsterChild()[i].monsterChildRC;
+	//		RECT warrior = _battle->get_vBattlePlayerWarrior()[j].inGamewarroirRC;
+	//		RECT temp;
+	//		if (IntersectRect(&temp, &monster, &warrior))
+	//		{
+	//			if (getDistance(_battle->get_vBattlePlayerWarrior()[j].x, _battle->get_vBattlePlayerWarrior()[j].y, _monsterChild->get_vMonsterChild()[i].x, _monsterChild->get_vMonsterChild()[i].y) < 100)
+	//			{
+	//				_battle->set_PlayerWarriorAtkmod(j, true);
+	//				_monsterChild->set_monsterAtkMod(i, true);
+	//			}
+	//			else
+	//			{
+	//				_monsterChild->set_monsterAtkMod(i, false);
+	//				_battle->set_PlayerWarriorAtkmod(j, false);
+	//			}
+	//		}
+	//
+	//	}
+	//}
 }
 
 void WarScene::Warrior_Atk()
@@ -285,7 +285,7 @@ void WarScene::Warrior_Atk()
 				if (currentFrame >= maxFrame)
 				{
 					_monsterChild->Minus_monsterHP(i, _battle->get_vBattlePlayerWarrior()[j].atk);
-					//_battle->set_PlayerWarriorAtkmod(j, false);
+					_battle->set_PlayerWarriorAtkmod(j, false);
 				}
 
 
@@ -312,7 +312,7 @@ void WarScene::Monster_Atk()
 				if (currentFrame >= maxFrame)
 				{
 					_battle->Minus_warriorHP(i, 20);
-					//_monsterChild->set_monsterAtkMod(j, false);
+					_monsterChild->set_monsterAtkMod(j, false);
 				}
 			}			
 		}
